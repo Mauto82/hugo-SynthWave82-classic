@@ -2,7 +2,7 @@
 
 A synthwave / retrowave theme for [Hugo](https://gohugo.io): neon colors, retro heroes and fast, lightweight pages.
 
-The original theme of [MAuToBlog](https://mautoblog.com), from December 2023 to October 2026, published as it was in production on 14 October 2026.
+The original theme of [MAuToBlog](https://mautoblog.com), from December 2023 to October 2026, published as it was in production on 14 October 2026. The story behind it: [Farewell to SynthWave82: the blog's old theme goes open source](https://mautoblog.com/en/posts/synthwave82-classic-farewell-hugo-theme-2026/).
 
 ## Features
 
