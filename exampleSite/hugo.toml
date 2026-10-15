@@ -1,5 +1,5 @@
 # Minimal example configuration for SynthWave82 Classic.
-# Prova in locale dalla cartella del tema:  hugo server -s exampleSite --themesDir ../..
+# Try it locally from the theme folder:  hugo server -s exampleSite --themesDir ../..
 baseURL = "https://example.org/"
 title = "My SynthWave Blog"
 theme = "synthwave82-classic"
@@ -61,9 +61,9 @@ enableRobotsTXT = true
     icon = "github"
     url = "https://github.com/"
 
-  # ── Integrazioni opzionali: decommenta per attivarle ──
+  # ── Optional integrations: uncomment to enable them ──
 
-  # Immagini ridimensionate dal CDN di Netlify (servono le rotte /cdn-* di netlify.toml)
+  # Images resized by the Netlify CDN (needs the /cdn-* routes from netlify.toml)
   # netlifyImageCDN = true
 
   # [params.analytics.umami]
@@ -78,10 +78,10 @@ enableRobotsTXT = true
   #   categoryId = "DIC_xxx"
 
   # [params.contactForm]
-  #   provider = "netlify"          # oppure "custom" con action = "https://formspree.io/f/xxx"
+  #   provider = "netlify"          # or "custom" with action = "https://formspree.io/f/xxx"
   #   successURL = "contact-success/"
 
-  # Banner informativo (nessun cookie: salva la scelta in localStorage)
+  # Consent banner (no cookies: the choice is stored in localStorage)
   # [params.cookie]
   #   enabled = true
   #   message = "This site uses no cookies."

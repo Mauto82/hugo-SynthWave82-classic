@@ -1,12 +1,12 @@
-# Configurazione di default del tema SynthWave82.
-# Hugo unisce questi valori con quelli del sito: il sito ha sempre la precedenza.
+# Default configuration of the SynthWave82 Classic theme.
+# Hugo merges these values with the site's own: the site always wins.
 
 [module]
   [module.hugoVersion]
     extended = false
     min = "0.146.0"
 
-# llms.txt per gli agenti AI e versione Markdown di ogni pagina.
+# llms.txt for AI agents and a Markdown version of every page.
 [outputFormats]
   [outputFormats.llms]
     mediaType = "text/plain"
