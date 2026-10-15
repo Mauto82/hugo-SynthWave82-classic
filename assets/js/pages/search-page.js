@@ -1,5 +1,5 @@
-// Pagina di ricerca: filtra l'indice JSON del sito (title, summary, tags, categories, author).
-// URL condivisibili: ?q=parola e opzionale &type=tag|category|author.
+// Search page: filters the site's JSON index (title, summary, tags, categories, author).
+// Shareable URLs: ?q=word and optional &type=tag|category|author.
 const config = JSON.parse(document.getElementById('search-page-config')?.textContent || '{}');
 const t = config.i18n || {};
 
@@ -13,13 +13,13 @@ const escapeHtml = (s) => {
 };
 const escapeAttr = (s) => (s || '').replace(/"/g, '&quot;');
 
-// Trattini come spazi: "coding-agent" (slug) trova "coding agent" (testo).
+// Hyphens as spaces: "coding-agent" (slug) matches "coding agent" (text).
 const normalize = (s) => (s || '').toLowerCase().replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
 
 const typeLabel = { tag: t.tag, category: t.category, author: t.author };
 
 if (input && results) {
-  const emptyState = results.innerHTML; // mascotte da ripristinare quando la query è vuota
+  const emptyState = results.innerHTML; // mascot to restore when the query is empty
   let index = [];
   let debounce;
 
@@ -108,7 +108,7 @@ if (input && results) {
     clearTimeout(debounce);
     const q = input.value.trim();
     debounce = setTimeout(() => {
-      updateURL(q, null); // digitando a mano si azzera il filtro per tipo
+      updateURL(q, null); // typing manually clears the type filter
       if (q.length >= 2) search(q, null);
       else if (!q) results.innerHTML = emptyState;
     }, 300);

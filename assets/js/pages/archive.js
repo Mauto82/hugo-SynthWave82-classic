@@ -1,4 +1,4 @@
-// Archivio: mostra 12 mesi per pagina con una paginazione lato client.
+// Archive: shows 12 months per page with client-side pagination.
 const MONTHS_PER_PAGE = 12;
 
 const archive = document.getElementById('archive-content');
@@ -42,7 +42,7 @@ if (archive && container) {
 
     nav.appendChild(pageItem('<', { page: currentPage - 1, disabled: currentPage === 1, extraClass: 'mobile-nav' }));
 
-    // 1 … (corrente-1) corrente (corrente+1) … ultima
+    // 1 … (current-1) current (current+1) … last
     const pages = [...new Set([1, currentPage - 1, currentPage, currentPage + 1, totalPages])]
       .filter((p) => p >= 1 && p <= totalPages)
       .sort((a, b) => a - b);

@@ -38,7 +38,7 @@
     padding-right: .2rem;
 }
 
-/* Timeline: label mese a sinistra (spina), post in griglia responsive a destra */
+/* Timeline: month label on the left (spine), posts in a responsive grid on the right */
 .archive .month {
     display: grid;
     grid-template-columns: minmax(90px, 130px) 1fr;
@@ -64,7 +64,7 @@
     color: var(--color-brand);
 }
 
-/* I post del mese fluiscono in colonne in base alla larghezza disponibile */
+/* The month's posts flow into columns based on the available width */
 .archive .month ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -110,13 +110,13 @@
 
 @media screen and (max-width: 768px) {
     .archive .month {
-        grid-template-columns: 1fr; /* label mese sopra, post sotto */
+        grid-template-columns: 1fr; /* month label above, posts below */
         gap: .4rem;
         padding-left: .75rem;
     }
 
     .archive .month ul {
-        grid-template-columns: 1fr; /* post in colonna singola */
+        grid-template-columns: 1fr; /* posts in a single column */
         gap: .75rem;
     }
 

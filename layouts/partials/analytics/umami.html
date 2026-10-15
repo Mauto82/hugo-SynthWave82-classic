@@ -1,4 +1,4 @@
-{{- /* Umami Analytics (senza cookie), solo in produzione.
+{{- /* Umami Analytics (cookieless), production only.
        params.analytics.umami: src, websiteId, performance (Core Web Vitals). */ -}}
 {{- with site.Params.analytics.umami -}}
 {{- if and .src .websiteId (eq hugo.Environment "production") -}}

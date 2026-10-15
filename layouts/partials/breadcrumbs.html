@@ -1,4 +1,4 @@
-{{- /* Briciole di pane: home › sezione › pagina. Attive con params.showBreadcrumbs (o per pagina). */ -}}
+{{- /* Breadcrumbs: home › section › page. Enabled with params.showBreadcrumbs (or per page). */ -}}
 {{- if .Param "showBreadcrumbs" }}
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   {{- range .Ancestors.Reverse }}

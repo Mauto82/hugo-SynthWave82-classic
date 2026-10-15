@@ -1,4 +1,4 @@
-/* Stili per blocchi matematici display ($$...$$) */
+/* Styles for display math blocks ($$...$$) */
 mjx-container[display="true"] {
     background-color: var(--color-dark);
     border: .2rem solid var(--color-brand);
@@ -14,7 +14,7 @@ mjx-container[display="true"] {
     color: var(--color-light);
 }
 
-/* Stili per formule matematiche inline ($...$) */
+/* Styles for inline math formulas ($...$) */
 mjx-container:not([display="true"]) {
     background: var(--color-transparent);
     border-radius: var(--border-radius);
@@ -40,7 +40,7 @@ mjx-container:not([display="true"]) {
         transform: none;
     }
     
-    /* Scrollbar personalizzata */
+    /* Custom scrollbar */
     mjx-container[display="true"]::-webkit-scrollbar {
         height: .5rem;
     }

@@ -1,4 +1,4 @@
-// Pulsante "copia" sui blocchi di codice evidenziati (.chroma).
+// "Copy" button on highlighted code blocks (.chroma).
 const svg = (inner) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
 const icons = {
@@ -8,7 +8,7 @@ const icons = {
 };
 
 document.querySelectorAll('.chroma').forEach((block) => {
-  // Il contenitore non scorre, così il pulsante resta fermo mentre il codice scorre in orizzontale
+  // The wrapper doesn't scroll, so the button stays put while the code scrolls horizontally
   const wrapper = document.createElement('div');
   wrapper.className = 'code-wrapper';
   block.parentNode.insertBefore(wrapper, block);

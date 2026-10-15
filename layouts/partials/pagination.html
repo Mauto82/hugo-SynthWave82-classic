@@ -1,5 +1,5 @@
-{{- /* Paginazione numerata: 1 … (corrente-1) corrente (corrente+1) … ultima, con frecce opzionali.
-       Param: il paginator (.Paginator o il risultato di .Paginate). */ -}}
+{{- /* Numbered pagination: 1 … (current-1) current (current+1) … last, with optional arrows.
+       Param: the paginator (.Paginator or the result of .Paginate). */ -}}
 {{- $p := . -}}
 {{- if gt $p.TotalPages 1 -}}
 {{- $current := $p.PageNumber -}}
@@ -23,7 +23,7 @@
       {{- else if or (eq $n 1) (eq $n $last) $near }}
       <a href="{{ .URL }}" class="page-item">{{ $n }}</a>
       {{- end }}
-      {{- /* puntini dopo la prima pagina e prima dell'ultima quando c'è un salto */ -}}
+      {{- /* dots after the first page and before the last when there's a gap */ -}}
       {{- if and (eq $n 1) (gt $current 3) }}
       <span class="page-item dots">...</span>
       {{- end }}

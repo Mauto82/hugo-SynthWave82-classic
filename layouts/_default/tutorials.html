@@ -14,8 +14,8 @@
     "class"       "tutorial-search-container"
 ) }}
 
-{{- /* Serie di guide: post con lo stesso param `tutorial`, ordinati per `tutorialId`.
-       Le serie più recenti (per data del primo post) vengono prima. */}}
+{{- /* Guide series: posts with the same `tutorial` param, sorted by `tutorialId`.
+       The most recent series (by date of the first post) come first. */}}
 {{- $series := slice -}}
 {{- range (where (where site.RegularPages "Section" "posts") "Params.tutorial" "!=" nil).GroupByParam "tutorial" -}}
   {{- $series = $series | append (dict "name" .Key "start" (index .Pages.ByDate 0).Date "pages" (.Pages.ByParam "tutorialId")) -}}

@@ -1,6 +1,6 @@
 /* =========================================================
-   search.css — pagina di ricerca centralizzata
-   Usa le CSS variables del tema synthwave82
+   search.css — centralized search page
+   Uses the synthwave82 theme CSS variables
    ========================================================= */
 
 .search-page {
@@ -75,7 +75,7 @@
   -webkit-appearance: none;
 }
 
-/* ── Messaggi di stato ────────────────────────────────── */
+/* ── Status messages ──────────────────────────────────── */
 
 .search-instructions,
 .search-no-results {
@@ -100,7 +100,7 @@
   color: var(--color-contrast);
 }
 
-/* ── Grid risultati ───────────────────────────────────── */
+/* ── Results grid ─────────────────────────────────────── */
 /* Card styles (.result-card etc.) are in theme cards.css (loaded globally) */
 
 .results-grid {
@@ -109,7 +109,7 @@
   gap: 1.5rem;
 }
 
-/* Schermi grandi: 3 colonne, coerente con la griglia della home */
+/* Large screens: 3 columns, consistent with the home grid */
 @media screen and (min-width: 1280px) {
   .results-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -122,13 +122,13 @@
   }
 }
 
-/* La hero dentro .search-page riempie la colonna (la larghezza la dà .search-page) */
+/* The hero inside .search-page fills the column (.search-page sets the width) */
 .search-page .section-hero {
   width: 100%;
   margin: 0;
 }
 
-/* ── Empty state: scia di orme di gatto (compaiono in sequenza) ────── */
+/* ── Empty state: trail of cat paw prints (appear in sequence) ────── */
 .search-trail {
   display: flex;
   justify-content: center;
@@ -147,12 +147,12 @@
   opacity: 0;
   fill: var(--color-contrast);
   filter: drop-shadow(0 0 4px var(--color-contrast));
-  /* ogni orma parte 0.45s dopo la precedente (--i = indice) */
+  /* each paw print starts 0.45s after the previous one (--i = index) */
   animation: paw-step 4s ease-in-out infinite;
   animation-delay: calc(var(--i) * .45s);
 }
 
-/* le orme dispari in magenta per un tocco synthwave */
+/* odd paw prints in magenta for a synthwave touch */
 .paw:nth-child(even) {
   fill: var(--color-brand);
   filter: drop-shadow(0 0 4px var(--color-brand));

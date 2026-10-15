@@ -59,7 +59,7 @@
 }
 
 #navbar .logo {
-    /* glow già presente prima che parta l'animazione flicker */
+    /* glow already present before the flicker animation starts */
     text-shadow:
             0 0 3px var(--color-brand),
             0 0 6px var(--color-brand),
@@ -125,7 +125,7 @@
 
 .lang-switcher .lang-current {
     color: var(--color-logo);
-    background-color: var(--color-background); /* sfondo solido: garantisce il contrasto del testo */
+    background-color: var(--color-background); /* solid background: ensures text contrast */
     font-weight: bold;
     border: 1px solid var(--color-logo);
     text-shadow: 0 0 5px var(--color-logo);

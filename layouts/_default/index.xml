@@ -13,7 +13,7 @@
         {{- with .OutputFormats.Get "RSS" -}}
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
         {{- end -}}
-        {{- /* Recupera tutti i post da tutte le sottocartelle */ -}}
+        {{- /* Fetch all posts from all subfolders */ -}}
         {{- $posts := where (where .Site.Pages "Kind" "page") "Section" "posts" -}}
         {{- range sort $posts "Date" "desc" }}
         <item>

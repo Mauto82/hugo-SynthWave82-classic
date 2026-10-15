@@ -1,5 +1,5 @@
-{{- /* Commenti con Giscus (GitHub Discussions). Attivi solo se params.comments.giscus.repo è impostato.
-       Valori da https://giscus.app: repo, repoId, category, categoryId; opzionali mapping, theme, reactions, inputPosition. */ -}}
+{{- /* Comments via Giscus (GitHub Discussions). Enabled only if params.comments.giscus.repo is set.
+       Values from https://giscus.app: repo, repoId, category, categoryId; optional mapping, theme, reactions, inputPosition. */ -}}
 {{- with site.Params.comments.giscus -}}
 {{- if .repo -}}
 <script src="https://giscus.app/client.js"

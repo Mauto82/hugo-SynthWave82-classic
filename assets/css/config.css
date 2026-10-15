@@ -17,7 +17,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Font fallback ottimizzati per ridurre CLS */
+/* Fallback fonts tuned to reduce CLS */
 @font-face {
     font-family: 'JetBrains Mono Fallback';
     src: local('Menlo'), local('Monaco'), local('Consolas'), local('Liberation Mono'), local('Courier New');
@@ -30,14 +30,14 @@
 :root{
   --gap: .5rem;
   --content-gap: 1.2rem;
-  /* Larghezza QUANTIZZATA a gradini, con massimo. I gutter laterali tengono
-     spazio per la sticky-share (fixed left) ed evitano sovrapposizione col testo. */
+  /* Width QUANTIZED in steps, with a maximum. The side gutters keep
+     room for the sticky-share (fixed left) and avoid overlapping the text. */
   --container-width: 868px;
   --navbar-width: 900px;
   --footer-width: 858px;
 }
 
-/* Tier larghezza: gradini fissi, massimo 1550px */
+/* Width tiers: fixed steps, max 1550px */
 @media screen and (min-width: 1280px) {
   :root { --container-width: 1150px; --navbar-width: 1190px; --footer-width: 1140px; }
 }
@@ -156,10 +156,10 @@ small {
 }
 
 .container {
-  /* Larghezza piena: i figli (.post, .archive, .posts-grid, hero, paginazione…)
-     si centrano da soli con width:min(--container-width,95%);margin:0 auto.
-     Così contenuto, navbar e footer convergono tutti alla stessa larghezza
-     (niente più doppio annidamento che restringeva il contenuto). */
+  /* Full width: the children (.post, .archive, .posts-grid, hero, pagination…)
+     center themselves with width:min(--container-width,95%);margin:0 auto.
+     This way content, navbar and footer all converge to the same width
+     (no more double nesting that narrowed the content). */
   width: 100%;
   margin: 0 auto;
   display: flex;

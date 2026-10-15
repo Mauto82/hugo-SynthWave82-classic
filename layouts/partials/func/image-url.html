@@ -1,5 +1,5 @@
-{{- /* URL di un'immagine con un preset del CDN Netlify (es. "post-small", "hero-lg").
-       Senza CDN restituisce il percorso originale. Param: src, preset. */ -}}
+{{- /* URL of an image with a Netlify CDN preset (e.g. "post-small", "hero-lg").
+       Without the CDN it returns the original path. Param: src, preset. */ -}}
 {{- $src := strings.TrimPrefix "/" .src -}}
 {{- if partial "func/cdn-enabled.html" . -}}
   {{- return printf "/cdn-%s/%s" .preset $src -}}

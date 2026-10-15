@@ -1,4 +1,4 @@
-{{- /* Articoli correlati: prima quelli simili (config "related" del sito), poi i più recenti fino a 3. */ -}}
+{{- /* Related articles: similar ones first (site "related" config), then the most recent, up to 3. */ -}}
 {{- $max := 3 -}}
 {{- $others := where (where site.RegularPages "Section" "posts") "Permalink" "!=" .Permalink -}}
 {{- $related := first $max ($others.Related .) -}}

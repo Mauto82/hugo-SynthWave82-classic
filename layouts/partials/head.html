@@ -1,19 +1,19 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- Preload font critico (latin, usato per la maggior parte del testo) -->
+<!-- Preload critical font (latin, used for most of the text) -->
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="manifest" href="/site.webmanifest" />
-{{/* Canonical self-referential su TUTTE le pagine (risolve i duplicati con/senza slash) */}}
+{{/* Self-referential canonical on ALL pages (fixes with/without trailing slash duplicates) */}}
 <link rel="canonical" href="{{ .Permalink }}" />
 {{- with .OutputFormats.Get "markdown" }}
 <link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown" />
 {{- end }}
 
-{{/* robots: noindex per pagine utility/thin che non devono stare nell'indice */}}
+{{/* robots: noindex for utility/thin pages that shouldn't be in the index */}}
 {{- $noindex := false -}}
 {{- if or (eq .Layout "search") (in .RelPermalink "/search/") -}}{{- $noindex = true -}}{{- end -}}
 {{- if and (eq .Kind "term") (lt (len .Pages) 3) -}}{{- $noindex = true -}}{{- end -}}
@@ -21,7 +21,7 @@
 {{- if .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
 <meta name="robots" content="{{ cond $noindex "noindex, follow" "index, follow" }}" />
 
-{{/* preload immagini above-the-fold */}}
+{{/* preload above-the-fold images */}}
 {{ if .IsHome }}
 {{- $hero := site.Params.hero.home | default "images/hero-synthwave.webp" -}}
 {{ if partial "func/cdn-enabled.html" . }}

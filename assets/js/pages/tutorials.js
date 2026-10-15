@@ -1,4 +1,4 @@
-// Pagina Guide: serie di post raggruppate per `tutorial`, con "Mostra altri" e ricerca locale.
+// Guides page: post series grouped by `tutorial`, with "Show more" and local search.
 const config = JSON.parse(document.getElementById('tutorials-config')?.textContent || '{}');
 const visible = config.visiblePosts || 3;
 const t = config.i18n || {};
@@ -21,7 +21,7 @@ const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const highlight = (text, term) =>
   escapeHtml(text).replace(new RegExp(`(${escapeRegExp(escapeHtml(term))})`, 'gi'), '<span class="highlight">$1</span>');
 
-// Dati di ogni post letti dall'HTML
+// Data for each post, read from the HTML
 const posts = groups.flatMap((group) => {
   const tutorial = group.querySelector('h2').dataset.tutorial;
   return [...group.querySelectorAll('li > a')].map((link) => ({
@@ -35,7 +35,7 @@ const posts = groups.flatMap((group) => {
 const allTags = [...new Set(posts.flatMap((p) => p.tags))];
 const allTutorials = [...new Set(posts.map((p) => p.tutorial))];
 
-// "Mostra altri N": tiene visibili solo i primi `visible` elementi di ogni serie
+// "Show N more": keeps only the first `visible` items of each series visible
 const applyCollapse = (group, items) => {
   const button = group.querySelector('.show-more');
   const hiddenCount = items.length - visible;

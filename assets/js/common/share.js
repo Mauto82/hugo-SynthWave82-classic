@@ -1,4 +1,4 @@
-// Barra di condivisione: "copia link" negli appunti con un tooltip di conferma.
+// Share bar: "copy link" to the clipboard with a confirmation tooltip.
 document.addEventListener('click', (e) => {
   const link = e.target.closest('[data-copy-url]');
   if (!link || !navigator.clipboard) return;

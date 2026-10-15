@@ -12,8 +12,8 @@
     gap: var(--content-gap);
 }
 
-/* Hero delle sezioni (guide, categorie, cerca): stessa larghezza del contenuto.
-   Niente margin-bottom: la spaziatura la dà il gap di main.container. */
+/* Section heroes (guides, categories, search): same width as the content.
+   No margin-bottom: spacing comes from the main.container gap. */
 .section-hero {
     width: min(var(--container-width), 95%);
     margin: 0 auto;
@@ -81,7 +81,7 @@
     gap: 1.2rem;
 }
 
-/* Schermi grandi: 3 colonne (paginazione a 12 = divisibile per 2 e 3) */
+/* Large screens: 3 columns (pagination of 12 = divisible by 2 and 3) */
 @media screen and (min-width: 1280px) {
     .posts-grid {
         grid-template-columns: repeat(3, 1fr);

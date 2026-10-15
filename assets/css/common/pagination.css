@@ -1,4 +1,4 @@
-/* Paginazione numerata (home, liste) e dell'archivio */
+/* Numbered pagination (home, lists) and archive pagination */
 .pagination-container {
     width: min(var(--container-width), 95%);
     margin: 2rem auto;

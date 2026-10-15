@@ -1,8 +1,8 @@
-{{- /* Campo di ricerca con pannello dei suggerimenti.
-       Param: ctx (pagina), id, placeholder, showSuggestions (default true),
-       sections (default posts, tags, categories, authors; disponibili anche "tutorials"),
-       global (default true: gestito da search.js e porta alla pagina di ricerca; false per una ricerca locale come le guide),
-       class (classi extra del contenitore). */ -}}
+{{- /* Search field with a suggestions panel.
+       Param: ctx (page), id, placeholder, showSuggestions (default true),
+       sections (default posts, tags, categories, authors; "tutorials" also available),
+       global (default true: handled by search.js and leads to the search page; false for a local search like the guides),
+       class (extra container classes). */ -}}
 {{- $id := .id | default "search-box" -}}
 {{- $placeholder := .placeholder | default (i18n "searchPlaceholder") -}}
 {{- $showSuggestions := cond (isset . "showSuggestions") .showSuggestions true -}}

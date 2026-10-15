@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.Locale }}" dir="{{ .Language.Direction | default "auto" }}" data-search-url="{{ "search/" | relLangURL }}" data-search-index="{{ "index.json" | relLangURL }}">
 <head>
-  {{/* Anti-FOUC: questo <style> deve essere il PRIMO tag nel <head>.
-       Il browser applica background-color:html prima di dipingere qualsiasi pixel,
-       eliminando il flash di sfondo bianco prima che il foglio di stile venga caricato.
-       NON spostare questo blocco più in basso: perderebbe il suo effetto. */}}
+  {{/* Anti-FOUC: this <style> must be the FIRST tag in <head>.
+       The browser applies background-color:html before painting any pixel,
+       removing the white background flash before the stylesheet loads.
+       Do NOT move this block further down: it would lose its effect. */}}
   <style>html{background-color:#291d38}</style>
   {{ partial "head.html" . }}
   {{ partial "microdata.html" . }}
   {{ partial "social_meta.html" . }}
   {{ partialCached "assets/css.html" . }}
-  {{- /* Aggancio per il sito: script e meta propri senza modificare il tema */}}
+  {{- /* Site hook: custom scripts and meta without modifying the theme */}}
   {{ partial "extend_head.html" . }}
 </head>
 <body>
@@ -34,7 +34,7 @@
     {{ partial "footer.html" . }}
   </footer>
   {{ partial "js.html" . }}
-  {{- /* Aggancio per il sito: script a fine pagina senza modificare il tema */}}
+  {{- /* Site hook: end-of-page scripts without modifying the theme */}}
   {{ partial "extend_footer.html" . }}
 </body>
 </html>

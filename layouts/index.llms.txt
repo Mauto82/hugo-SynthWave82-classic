@@ -1,5 +1,5 @@
-{{- /* llms.txt (https://llmstxt.org): indice del sito per agenti AI.
-       Descrizione da params.llms.description (per lingua), con fallback su params.description. */ -}}
+{{- /* llms.txt (https://llmstxt.org): site index for AI agents.
+       Description from params.llms.description (per language), falling back to params.description. */ -}}
 {{- $posts := where (where .Site.RegularPages "Section" "posts") "Params.tutorial" "==" nil -}}
 {{- $guides := where (where .Site.RegularPages "Section" "posts") "Params.tutorial" "!=" nil -}}
 # {{ site.Params.shortTitle | default site.Title }}

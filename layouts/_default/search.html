@@ -17,7 +17,7 @@
   <div id="search-results" class="search-results" aria-live="polite">
     <div class="search-trail">
       <svg class="paw-trail" viewBox="0 0 420 130" role="img" aria-hidden="true" focusable="false">
-        {{- /* orme che camminano: stessa impronta ripetuta, --i scandisce il ritardo dell'animazione */}}
+        {{- /* walking paw prints: same print repeated, --i sets the animation delay */}}
         {{- range $i, $xy := slice (slice 30 92) (slice 105 74) (slice 180 86) (slice 255 68) (slice 330 80) }}
         <use href="#paw-print" class="paw" style="--i:{{ $i }}" transform="translate({{ index $xy 0 }},{{ index $xy 1 }}) rotate(-22)"/>
         {{- end }}

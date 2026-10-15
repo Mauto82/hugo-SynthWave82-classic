@@ -1,5 +1,5 @@
-{{- /* Barra di condivisione. Ogni rete si attiva con params.stickyShare.<rete>: facebook, x, whatsapp, telegram, email, clipboard.
-       I link funzionano anche senza JavaScript; solo "copia link" usa share.js. */ -}}
+{{- /* Share bar. Each network is enabled with params.stickyShare.<network>: facebook, x, whatsapp, telegram, email, clipboard.
+       Links work without JavaScript too; only "copy link" uses share.js. */ -}}
 {{- with site.Params.stickyShare }}{{ if .active }}
 {{- $cfg := . -}}
 {{- $url := $.Permalink | urlquery -}}

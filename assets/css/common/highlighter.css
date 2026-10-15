@@ -1,5 +1,5 @@
-/* Wrapper esterno: posizionato e NON scrolla → tiene fermi bottone copia e label.
-   border-radius + overflow:hidden ritagliano la label all'angolo arrotondato. */
+/* Outer wrapper: positioned and does NOT scroll → keeps the copy button and label still.
+   border-radius + overflow:hidden clip the label to the rounded corner. */
 .code-wrapper {
     position: relative;
     margin: 1.2em 0;
@@ -8,19 +8,19 @@
     overflow: hidden;
 }
 
-/* Tutti i blocchi <pre> scrollano orizzontalmente invece di sforare la pagina */
+/* All <pre> blocks scroll horizontally instead of overflowing the page */
 .post pre,
 .article-content pre {
     overflow-x: auto;
     max-width: 100%;
 }
-/* Il <pre> dentro .chroma NON scrolla: è .chroma stesso a farlo */
+/* The <pre> inside .chroma does NOT scroll: .chroma itself does */
 .chroma pre {
     overflow-x: visible;
     max-width: none;
 }
 
-/* Code fences SENZA syntax highlighting (plain <pre><code>): stile coerente con .chroma */
+/* Code fences WITHOUT syntax highlighting (plain <pre><code>): style consistent with .chroma */
 .article-content > pre {
     background-color: #1d1429;
     border: 1px solid hsl(0 0% 100% / .08);
@@ -44,7 +44,7 @@
     border-radius: 4px;
 }
 
-/* Style per il contenitore — è lo scroller orizzontale (clippa, niente overflow di pagina) */
+/* Container style — it is the horizontal scroller (clips, no page overflow) */
 .chroma {
     background-color: #1d1429;
     border: 1px solid hsl(0 0% 100% / .08);
@@ -52,7 +52,7 @@
     border-radius: var(--border-radius);
     overflow-x: auto;
     margin: 0;
-    position: static; /* il containing block per label/bottone è .code-wrapper */
+    position: static; /* the containing block for label/button is .code-wrapper */
     padding-top: 2.6rem;
     scrollbar-width: thin;
     scrollbar-color: var(--color-brand) transparent;
@@ -142,14 +142,14 @@
 .chroma .cp { color: var(--color-success); font-weight: bold } /* Comment.Preproc */
 .chroma .cpf { color: var(--color-success); font-weight: bold } /* Comment.PreprocFile */
 
-/* Stili specifici per XML/HTML */
+/* XML/HTML-specific styles */
 .chroma .nt { color: var(--color-danger); } /* Name.Tag */
 .chroma .na { color: var(--color-light-medium); } /* Name.Attribute */
 .chroma .s, .highlight .s1, .highlight .s2 { color: var(--color-success); } /* Strings */
 .chroma .c, .highlight .cd { color: var(--color-success); font-style: italic; } /* Comments */
 
-/* Label del linguaggio — angolo in alto a sinistra allineato al raggio dello snippet,
-   inset di 1px per non sovrapporsi al bordo della .chroma */
+/* Language label — top-left corner aligned with the snippet's radius,
+   1px inset so it doesn't overlap the .chroma border */
 .chroma code[data-lang]::before {
     content: attr(data-lang);
     position: absolute;
@@ -164,7 +164,7 @@
     text-transform: capitalize;
 }
 
-/* Stile pulsante copia — sul .code-wrapper, resta fermo durante lo scroll orizzontale */
+/* Copy button style — on .code-wrapper, stays still during horizontal scroll */
 .code-wrapper .copy-button {
     position: absolute;
     top: .5rem;

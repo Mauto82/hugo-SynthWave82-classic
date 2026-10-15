@@ -25,7 +25,7 @@
         {{ end }}
     </div>
     {{ partial "related_posts.html" . }}
-    {{- /* Commenti: attivi su tutto il sito (enableComments) salvo disableComments, oppure solo sui post con enableComments */}}
+    {{- /* Comments: enabled site-wide (enableComments) unless disableComments, or only on posts with enableComments */}}
     {{ if cond site.Params.enableComments (not .Params.disableComments) .Params.enableComments }}
     <div class="post-comments">
         {{ partial "comments.html" . }}

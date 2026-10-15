@@ -45,8 +45,8 @@
     display: none;
 }
 
-/* Fino a 1024px la share sta in barra in basso: sopra i 1024 il gutter laterale
-   (>=78px) lascia spazio alla versione fixed-left senza coprire il testo. */
+/* Up to 1024px the share sits in a bottom bar: above 1024 the side gutter
+   (>=78px) leaves room for the fixed-left version without covering the text. */
 @media (max-width: 1024px) {
     .tooltip {
         bottom: 100%;

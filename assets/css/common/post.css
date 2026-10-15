@@ -9,14 +9,14 @@
     margin: 0 auto;
 }
 
-/* Testo normale: spezza solo le parole troppo lunghe quando necessario */
+/* Normal text: break only overly long words when needed */
 .post .article-content p,
 .post .article-content li {
     overflow-wrap: break-word;
 }
 
-/* Link (URL lunghi): spezza ovunque serva — anywhere influenza anche il min-content,
-   così l'URL non può forzare la larghezza della pagina */
+/* Links (long URLs): break wherever needed — anywhere also affects min-content,
+   so the URL can't force the page width */
 .post .article-content a {
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -82,8 +82,8 @@ article.post h3::before {
         0.95rem,
         1.6vw,
         1rem
-    ); /* Stessa dimensione del testo del post */
-    line-height: 1.75; /* Stesso line-height dei paragrafi */
+    ); /* Same size as the post text */
+    line-height: 1.75; /* Same line-height as paragraphs */
     margin-bottom: 0.5rem;
     color: var(--color-post);
 }
@@ -335,7 +335,7 @@ article.post h3::before {
         font-size: 0.8rem;
     }
 
-    /* Tabelle scrollabili orizzontalmente invece di sforare la pagina */
+    /* Tables scroll horizontally instead of overflowing the page */
     .post table {
         display: block;
         overflow-x: auto;
@@ -359,7 +359,7 @@ article.post h3::before {
     margin-top: 1rem;
 }
 
-/* Shortcode video (specificità alta: deve battere ".post .article-content > * + *") */
+/* Video shortcode (high specificity: must beat ".post .article-content > * + *") */
 .post .article-content .post-video {
     margin: 1.5rem 0;
 }

@@ -1,6 +1,6 @@
-{{- /* Modulo contatti.
-       params.contactForm.provider: "netlify" (default, Netlify Forms) oppure "custom" con params.contactForm.action (es. Formspree).
-       params.contactForm.successURL: pagina di conferma (per lingua). params.privacyPolicyURL: link all'informativa (per lingua). */ -}}
+{{- /* Contact form.
+       params.contactForm.provider: "netlify" (default, Netlify Forms) or "custom" with params.contactForm.action (e.g. Formspree).
+       params.contactForm.successURL: confirmation page (per language). params.privacyPolicyURL: link to the privacy policy (per language). */ -}}
 {{- $cfg := site.Params.contactForm | default dict -}}
 {{- $netlify := eq ($cfg.provider | default "netlify") "netlify" -}}
 {{- $success := "" -}}

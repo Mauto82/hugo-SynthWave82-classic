@@ -2,7 +2,7 @@
     width: min(var(--container-width), 95%);
     margin: 0 auto;
     display: block;
-    box-sizing: border-box; /* Assicura che padding/border siano inclusi nella width */
+    box-sizing: border-box; /* Ensures padding/border are included in the width */
 }
 
 .home-search-container,
@@ -13,9 +13,9 @@
     box-sizing: border-box;
 }
 
-/* Specifico per tutorial search container.
-   Niente margin-top: la spaziatura dalla hero la dà il gap di main.container
-   (altrimenti si somma e lo spazio raddoppia rispetto alle altre pagine). */
+/* Specific to the tutorial search container.
+   No margin-top: spacing from the hero comes from the main.container gap
+   (otherwise they add up and the space doubles compared to other pages). */
 .tutorial-search-container {
     margin: 0 auto;
 }
@@ -29,7 +29,7 @@
 }
 
 /* ── Search Box Wrapper Global Styles ───────────────────────────────── */
-/* Copiato da search.css per unificazione visiva */
+/* Copied from search.css for visual consistency */
 
 .search-wrapper {
   display: flex;
@@ -40,9 +40,9 @@
   padding: 0.5rem 1rem;
   transition: box-shadow 0.3s ease;
   position: relative;
-  box-sizing: border-box; /* Cruciale per evitare che il padding aumenti la larghezza */
-  width: 100%; /* Forza il wrapper a stare nel container */
-  height: 3.5rem; /* Altezza fissa per consistenza */
+  box-sizing: border-box; /* Crucial to keep padding from increasing the width */
+  width: 100%; /* Forces the wrapper to stay inside the container */
+  height: 3.5rem; /* Fixed height for consistency */
 }
 
 .search-wrapper:focus-within {
@@ -51,7 +51,7 @@
 
 .search-wrapper .search-icon {
   color: var(--color-brand);
-  width: 1.5rem; /* Icona più grande */
+  width: 1.5rem; /* Larger icon */
   height: 1.5rem;
   flex-shrink: 0;
   margin-left: 0.8rem;
@@ -63,16 +63,16 @@
   background: transparent;
   color: var(--color-light);
   font-family: inherit;
-  font-size: 1.1rem; /* Font leggermente più grande */
+  font-size: 1.1rem; /* Slightly larger font */
   border: none;
   outline: none;
   appearance: none;
   order: 0;
-  height: 100%; /* Occupa tutta l'altezza */
+  height: 100%; /* Takes the full height */
 }
 
 .search-wrapper .search-input::placeholder {
-  color: var(--color-brand-light); /* Colore rosa richiesto */
+  color: var(--color-brand-light); /* Requested pink color */
   opacity: 0.6;
 }
 
@@ -99,7 +99,7 @@
     z-index: 1000;
     max-height: 400px;
     overflow-y: auto;
-    border: 1px solid var(--color-transparent); /* Aggiunto per consistenza */
+    border: 1px solid var(--color-transparent); /* Added for consistency */
 }
 
 .suggestion-section {
@@ -129,7 +129,7 @@
     border-radius: var(--border-radius);
     transition: var(--transition);
     font-size: 0.9rem;
-    color: var(--color-light); /* Assicura contrasto */
+    color: var(--color-light); /* Ensures contrast */
 }
 
 .suggestion-section li:hover {

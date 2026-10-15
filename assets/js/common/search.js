@@ -1,15 +1,15 @@
-// Suggerimenti di ricerca per i campi .global-search-input (barra in alto, home, archivio, pagina di ricerca).
-// L'indice JSON si carica solo al primo focus. Un suggerimento porta al post o alla pagina di ricerca filtrata.
+// Search suggestions for .global-search-input fields (top bar, home, archive, search page).
+// The JSON index loads only on first focus. A suggestion leads to the post or to the filtered search page.
 document.addEventListener('DOMContentLoaded', () => {
   const inputs = document.querySelectorAll('.global-search-input');
   if (inputs.length === 0) return;
 
-  // URL della ricerca e dell'indice nella lingua corrente, dagli attributi data-* di <html> (baseof.html)
+  // Search and index URLs for the current language, from the data-* attributes on <html> (baseof.html)
   const searchBase = document.documentElement.dataset.searchUrl || '/search/';
   const indexPath = document.documentElement.dataset.searchIndex || '/index.json';
   const isSearchPage = window.location.pathname.startsWith(searchBase);
 
-  // Valori distinti per tipo di suggerimento (post: titolo -> link)
+  // Distinct values per suggestion type (post: title -> link)
   const data = { post: new Map(), tag: new Set(), category: new Set(), author: new Set() };
   let indexRequested = false;
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const highlight = (text, term) =>
     escapeHtml(text).replace(new RegExp(`(${escapeRegExp(escapeHtml(term))})`, 'gi'), '<span class="highlight">$1</span>');
 
-  // Vai al post oppure alla pagina di ricerca filtrata per tipo
+  // Go to the post, or to the search page filtered by type
   const open = (li) => {
     const { type, value, link } = li.dataset;
     window.location.href = type === 'post' ? link : `${searchBase}?q=${encodeURIComponent(value)}&type=${type}`;
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.style.display = any ? 'block' : 'none';
     };
 
-    // Evidenzia il suggerimento precedente/successivo (con giro)
+    // Highlight the previous/next suggestion (wrapping around)
     const move = (step) => {
       const list = items();
       if (!list.length) return;
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       switch (e.key) {
         case 'ArrowDown':
         case 'Tab':
-          if (!isOpen() || !items().length) return; // a pannello chiuso Tab sposta il focus come sempre
+          if (!isOpen() || !items().length) return; // with the panel closed, Tab moves focus as usual
           e.preventDefault();
           move(e.shiftKey ? -1 : 1);
           break;
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
           }
           panel.style.display = 'none';
-          // sulla pagina di ricerca l'Invio lo gestisce search-page.js
+          // on the search page, Enter is handled by search-page.js
           const q = input.value.trim();
           if (!isSearchPage && q) window.location.href = `${searchBase}?q=${encodeURIComponent(q)}`;
           break;
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Chiude i pannelli cliccando fuori
+  // Close the panels when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrapper')) {
       document.querySelectorAll('.search-suggestions').forEach((panel) => { panel.style.display = 'none'; });

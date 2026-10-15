@@ -1,6 +1,6 @@
-{{- /* Hero banner riusabile per home e sezioni.
-       Param: base (es. "images/hero-guide.webp"), title, desc, alt (default title), class (default "section-hero").
-       Con params.netlifyImageCDN usa le rotte /cdn-hero-* che ridimensionano l'immagine base. */ -}}
+{{- /* Reusable hero banner for home and sections.
+       Param: base (e.g. "images/hero-guide.webp"), title, desc, alt (default title), class (default "section-hero").
+       With params.netlifyImageCDN it uses the /cdn-hero-* routes that resize the base image. */ -}}
 {{- $base := .base -}}
 {{- $alt := .alt | default .title -}}
 {{- $class := cond (isset . "class") .class "section-hero" -}}

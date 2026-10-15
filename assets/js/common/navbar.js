@@ -1,4 +1,4 @@
-// Navbar: menu a scomparsa su mobile e ombra quando la pagina scorre.
+// Navbar: collapsible menu on mobile and a shadow when the page scrolls.
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('navbar-menu');
 const header = document.getElementById('site-header');
@@ -14,7 +14,7 @@ if (hamburger && menu) {
     hamburger.innerHTML = isOpen ? iconClose : iconMenu;
   });
 
-  // Tornando a desktop il menu mobile si chiude
+  // Switching back to desktop closes the mobile menu
   window.matchMedia('(min-width: 921px)').addEventListener('change', (e) => {
     if (e.matches) {
       menu.classList.remove('open');

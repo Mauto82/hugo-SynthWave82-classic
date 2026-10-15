@@ -1,4 +1,4 @@
-{{- /* Bundle JS comune: js/main.js e i moduli che importa. */ -}}
+{{- /* Shared JS bundle: js/main.js and the modules it imports. */ -}}
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- with resources.Get "js/main.js" | js.Build $opts -}}
   {{- if hugo.IsDevelopment }}

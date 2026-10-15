@@ -1,6 +1,6 @@
-{{- /* Carica lo script di una pagina da assets/js/pages/<name>.js.
-       Param: name, config (dict opzionale, letto dallo script con readConfig).
-       La config va in un <script type="application/json"> così i testi tradotti restano fuori dal JS. */ -}}
+{{- /* Loads a page's script from assets/js/pages/<name>.js.
+       Param: name, config (optional dict, read by the script with readConfig).
+       The config goes in a <script type="application/json"> so translated strings stay out of the JS. */ -}}
 {{- with .config }}
 <script type="application/json" id="{{ $.name }}-config">{{ . | jsonify | safeJS }}</script>
 {{- end }}
