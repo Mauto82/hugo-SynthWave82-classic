@@ -1,0 +1,20 @@
+{{- /* Hero banner riusabile per home e sezioni.
+       Param: base (es. "images/hero-guide.webp"), title, desc, alt (default title), class (default "section-hero").
+       Con params.netlifyImageCDN usa le rotte /cdn-hero-* che ridimensionano l'immagine base. */ -}}
+{{- $base := .base -}}
+{{- $alt := .alt | default .title -}}
+{{- $class := cond (isset . "class") .class "section-hero" -}}
+<div class="hero-synthwave{{ with $class }} {{ . }}{{ end }}">
+  {{ if partial "func/cdn-enabled.html" . }}
+  <img src="/cdn-hero-lg/{{ $base }}"
+       srcset="/cdn-hero-sm/{{ $base }} 700w, /cdn-hero-md/{{ $base }} 900w, /cdn-hero-lg/{{ $base }} 1200w"
+       sizes="min(868px, 95vw)"
+       alt="{{ $alt }}" class="hero-img" width="1200" height="600" fetchpriority="high">
+  {{ else }}
+  <img src="/{{ $base }}" alt="{{ $alt }}" class="hero-img" width="1200" height="600" fetchpriority="high">
+  {{ end }}
+  <div class="hero-overlay">
+    {{ with .title }}<h1 class="hero-title">{{ . }}</h1>{{ end }}
+    {{ with .desc }}<p class="hero-desc">{{ . }}</p>{{ end }}
+  </div>
+</div>

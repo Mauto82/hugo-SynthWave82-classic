@@ -1,0 +1,178 @@
+- id: prev_page
+  translation: "Prev"
+
+- id: next_page
+  translation: "Next"
+
+- id: read_time
+  translation:
+    one: "1 min"
+    other: "{{ .Count }} min"
+
+- id: home
+  translation: "Home"
+
+- id: related_posts
+  translation: "Suggested articles"
+
+- id: searchPlaceholder
+  translation: "Search the blog..."
+
+- id: searchPosts
+  translation: "Posts"
+
+- id: categories
+  translation: "Categories"
+
+- id: authors
+  translation: "Authors"
+
+- id: categoriesHeroDesc
+  translation: "Explore all the blog topics."
+
+- id: archivesHeroDesc
+  translation: "The truth is out there — every post, year by year."
+
+- id: searchHeroDesc
+  translation: "Search across articles, authors, tags and categories: type a keyword to begin."
+
+- id: guidesSearchPlaceholder
+  translation: "Search guides..."
+
+- id: guidesTitle
+  translation: "Guides and tutorials"
+
+- id: showMore
+  translation: "Show more"
+
+- id: showLess
+  translation: "Show less"
+
+- id: searchNoResultsFor
+  translation: "No results for"
+
+- id: searchResultOne
+  translation: "result"
+
+- id: searchResultOther
+  translation: "results"
+
+- id: searchFor
+  translation: "for"
+
+- id: searchTypeTag
+  translation: "tag"
+
+- id: searchTypeCategory
+  translation: "category"
+
+- id: searchTypeAuthor
+  translation: "author"
+
+- id: searchLoadError
+  translation: "Error loading search"
+
+- id: searchErrorDetails
+  translation: "Details"
+
+- id: language
+  translation: "Language"
+
+- id: published
+  translation: "Published"
+
+- id: updated
+  translation: "Updated"
+
+- id: author
+  translation: "Author"
+
+- id: guide
+  translation: "Guide"
+
+- id: part
+  translation: "part"
+
+- id: translation
+  translation: "Translation"
+
+- id: pages
+  translation: "Pages"
+
+- id: articles
+  translation: "Articles"
+
+- id: llmsOptional
+  translation: "Optional"
+
+- id: llmsMarkdownNote
+  translation: "Every page has a Markdown version at the same address with `index.md` appended (e.g. {{ .Example }})."
+
+- id: llmsOtherLanguage
+  translation: "{{ .Language }} version of this file: {{ .URL }}"
+
+- id: footerMore
+  translation: "More"
+
+- id: cookieReset
+  translation: "Reset Consent"
+
+- id: contactHoneypot
+  translation: "Do not fill this if you are human"
+
+- id: contactName
+  translation: "Your name"
+
+- id: contactEmail
+  translation: "Your email"
+
+- id: contactSubject
+  translation: "Subject"
+
+- id: contactMessage
+  translation: "Message"
+
+- id: contactSend
+  translation: "Send Message"
+
+- id: contactPrivacy
+  translation: "I use the data you enter only to reply to you. Details in the <a href=\"{{ .URL }}\">privacy policy</a>."
+
+- id: termDescription
+  translation: "Explore all {{ .Title }} articles on {{ .Site }}."
+
+- id: lang_it
+  translation: "Italian"
+
+- id: lang_en
+  translation: "English"
+
+- id: shareOn
+  translation: "Share on {{ .Network }}"
+
+- id: shareEmail
+  translation: "Share via Email"
+
+- id: copyLink
+  translation: "Copy Link"
+
+- id: cookieMessage
+  translation: "This site uses no cookies."
+
+- id: cookieAccept
+  translation: "Accept"
+
+- id: cookieReject
+  translation: "Decline"
+
+- id: cookieSettings
+  translation: "Details"
+
+- id: cookieModalTitle
+  translation: "Privacy Preferences"
+
+- id: linkCopied
+  translation: "Copied"
+
+- id: videoUnsupported
+  translation: "Your browser does not support video. You can open the file directly:"

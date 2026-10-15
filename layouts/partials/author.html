@@ -1,0 +1,18 @@
+{{- if or .Params.author site.Params.author -}}
+    {{- $author     := (.Params.author | default site.Params.author) -}}
+    {{- $authorType := printf "%T" $author -}}
+    {{- $searchBase := "search/" | relLangURL -}}
+
+    {{- if or (eq $authorType "[]string") (eq $authorType "[]interface {}") -}}
+        {{- range $i, $a := $author -}}
+            {{- $name := printf "%v" $a -}}
+            <a href="{{ $searchBase }}?q={{ $name | urlize }}&amp;type=author" class="author-link">{{ $name }}</a>{{- if lt $i (sub (len $author) 1) -}}, {{- end -}}
+        {{- end -}}
+    {{- else if eq $authorType "maps.Params" -}}
+        {{- $name := $author.name -}}
+        <a href="{{ $searchBase }}?q={{ $name | urlize }}&amp;type=author" class="author-link">{{ $name }}</a>
+    {{- else -}}
+        {{- $name := printf "%v" $author -}}
+        <a href="{{ $searchBase }}?q={{ $name | urlize }}&amp;type=author" class="author-link">{{ $name }}</a>
+    {{- end -}}
+{{- end -}}

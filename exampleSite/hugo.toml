@@ -1,0 +1,92 @@
+# Minimal example configuration for SynthWave82 Classic.
+# Prova in locale dalla cartella del tema:  hugo server -s exampleSite --themesDir ../..
+baseURL = "https://example.org/"
+title = "My SynthWave Blog"
+theme = "synthwave82-classic"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON", "llms"]
+  page = ["HTML", "markdown"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[menus.main]]
+  name = "Archive"
+  url = "/archive/"
+  weight = 10
+  pre = "archive"
+[[menus.main]]
+  name = "Guides"
+  url = "/guides/"
+  weight = 15
+  pre = "auto_stories"
+[[menus.main]]
+  name = "Categories"
+  url = "/categories/"
+  weight = 20
+  pre = "category"
+[[menus.main]]
+  name = "Search"
+  url = "/search/"
+  weight = 25
+  pre = "search"
+
+[[menus.footer]]
+  name = "About"
+  url = "/about/"
+  weight = 10
+[[menus.footer]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 20
+
+[params]
+  description = "A retro-futuristic blog about code and neon lights."
+  shortTitle = "SynthBlog"
+  # privacyPolicyURL = "privacy/"
+
+  [params.author]
+    name = "Jane Doe"
+
+  [[params.social]]
+    name = "github"
+    label = "GitHub"
+    icon = "github"
+    url = "https://github.com/"
+
+  # ── Integrazioni opzionali: decommenta per attivarle ──
+
+  # Immagini ridimensionate dal CDN di Netlify (servono le rotte /cdn-* di netlify.toml)
+  # netlifyImageCDN = true
+
+  # [params.analytics.umami]
+  #   src = "https://analytics.example.org/script.js"
+  #   websiteId = "00000000-0000-0000-0000-000000000000"
+  #   performance = true
+
+  # [params.comments.giscus]
+  #   repo = "user/repo"
+  #   repoId = "R_xxx"
+  #   category = "General"
+  #   categoryId = "DIC_xxx"
+
+  # [params.contactForm]
+  #   provider = "netlify"          # oppure "custom" con action = "https://formspree.io/f/xxx"
+  #   successURL = "contact-success/"
+
+  # Banner informativo (nessun cookie: salva la scelta in localStorage)
+  # [params.cookie]
+  #   enabled = true
+  #   message = "This site uses no cookies."
+  #   messageLong = "Longer text shown in the details dialog."
+  #   acceptText = "Accept"
+  #   rejectText = "Decline"
+  #   settingsText = "Details"
+  #   modalTitle = "Privacy Preferences"

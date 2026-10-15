@@ -1,0 +1,13 @@
+{{- $currentPage := .RelPermalink }}
+<div id="navbar-menu" class="menu">
+{{- range site.Menus.main }}
+    {{- $menuItemPage := .URL }}
+    <a href="{{ $menuItemPage | absLangURL }}" {{- if eq $currentPage $menuItemPage -}}class="active"{{- end -}} title="{{ .Title | default .Name }}">
+        {{- if .Pre }}
+            {{ partial "icon.html" (dict "Icon" .Pre) }}
+        {{- end }}
+        <em>{{- .Name -}}</em>
+    </a>
+{{- end }}
+{{ partial "language-switcher.html" . }}
+</div>

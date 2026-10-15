@@ -1,0 +1,37 @@
+{{- /* llms.txt (https://llmstxt.org): indice del sito per agenti AI.
+       Descrizione da params.llms.description (per lingua), con fallback su params.description. */ -}}
+{{- $posts := where (where .Site.RegularPages "Section" "posts") "Params.tutorial" "==" nil -}}
+{{- $guides := where (where .Site.RegularPages "Section" "posts") "Params.tutorial" "!=" nil -}}
+# {{ site.Params.shortTitle | default site.Title }}
+
+> {{ site.Params.llms.description | default site.Params.description }}
+
+{{ i18n "llmsMarkdownNote" (dict "Example" (printf "%s<slug>/index.md" ("posts/" | absLangURL))) }}
+{{- range .Translations }}{{ $lang := .Language.Lang }}{{ with .OutputFormats.Get "llms" }} {{ i18n "llmsOtherLanguage" (dict "Language" (i18n (printf "lang_%s" $lang)) "URL" .Permalink) }}{{ end }}{{ end }}
+
+## {{ i18n "pages" }}
+
+{{ range where .Site.RegularPages "Section" "" -}}
+{{- if or .Params.noindex (eq .Layout "search") (in .RelPermalink "/search/") }}{{ continue }}{{ end -}}
+- [{{ .Title }}]({{ .Permalink }}index.md){{ with .Description }}: {{ . | plainify | htmlUnescape }}{{ end }}
+{{ end }}
+## {{ i18n "guidesTitle" }}
+{{ range $guides.GroupByParam "tutorial" }}
+### {{ .Key }}
+
+{{ range .Pages.ByParam "tutorialId" -}}
+- [{{ .Title }}]({{ .Permalink }}index.md){{ with .Params.summary | default .Description }}: {{ . | plainify | htmlUnescape }}{{ end }}
+{{ end -}}
+{{ end }}
+## {{ i18n "articles" }}
+
+{{ range $posts.ByDate.Reverse -}}
+- [{{ .Title }}]({{ .Permalink }}index.md) ({{ .Date.Format "2006-01-02" }}){{ with .Params.summary | default .Description }}: {{ . | plainify | htmlUnescape }}{{ end }}
+{{ end }}
+## {{ i18n "llmsOptional" }}
+
+- [RSS]({{ "index.xml" | absLangURL }})
+- [Sitemap]({{ "sitemap.xml" | absLangURL }})
+{{- range site.Params.social }}
+- [{{ .label | default .name }}]({{ .url }})
+{{- end }}

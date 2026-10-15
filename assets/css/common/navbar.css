@@ -1,0 +1,248 @@
+#site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--color-background);
+}
+
+#site-header.scrolled {
+    box-shadow: 0 .3rem .8rem var(--color-dark);
+}
+
+#navbar {
+    overflow: hidden;
+    background-color: var(--color-navbar);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    user-select: none;
+    width: 100%;
+    --color-neon-red: #ff003c;
+}
+
+#navbar .wrapper {
+    /* Use container-width to align with the rest of the content */
+    width: min(var(--container-width), 95%);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+                0 0 3px var(--color-brand),
+                0 0 6px var(--color-brand),
+                0 0 9px var(--color-logo),
+                0 0 12px var(--color-brand)
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+@keyframes flickerSmile {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+                0 0 3px var(--color-light-medium),
+                0 0 6px var(--color-light-medium),
+                0 0 9px var(--color-light-medium),
+                0 0 12px var(--color-light-medium)
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+#navbar .logo {
+    /* glow già presente prima che parta l'animazione flicker */
+    text-shadow:
+            0 0 3px var(--color-brand),
+            0 0 6px var(--color-brand),
+            0 0 9px var(--color-logo),
+            0 0 12px var(--color-brand);
+    font-size: 2.6rem;
+    line-height: 3rem;
+    color: var(--color-logo);
+    animation: flicker 2.9s infinite alternate;
+    padding: .8rem 1.3rem;
+    position: relative;
+}
+
+#navbar .logo .eyes {
+    color: var(--color-light);
+    animation: flickerSmile 2.4s infinite alternate;
+}
+
+#navbar .logo::after {
+    content: "(";
+    position: absolute;
+    font-size: 1.7rem;
+    transform: rotate(-94deg);
+    left: 6.3rem;
+    top: 2.3rem;
+    color: var(--color-light);
+    animation: flickerSmile 1.9s infinite alternate;
+}
+
+#navbar .menu {
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    height: 3.5rem; /* Match menu item height */
+}
+
+.lang-switcher span, 
+.lang-switcher a {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--color-light);
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid transparent; /* Reserve space for border */
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.lang-switcher a:hover {
+    background: transparent;
+    color: var(--color-contrast);
+    /* Intense red glow on hover */
+    text-shadow: 0 0 5px var(--color-contrast), 0 0 10px var(--color-contrast), 0 0 20px var(--color-contrast);
+    box-shadow: none;
+}
+
+.lang-switcher .lang-current {
+    color: var(--color-logo);
+    background-color: var(--color-background); /* sfondo solido: garantisce il contrasto del testo */
+    font-weight: bold;
+    border: 1px solid var(--color-logo);
+    text-shadow: 0 0 5px var(--color-logo);
+    box-shadow: 0 0 5px var(--color-transparent);
+    animation: flicker 2.9s infinite alternate;
+}
+
+#navbar .menu > a {
+    color: var(--color-light);
+    line-height: 3.5rem;
+    font-weight: 300;
+    margin-right: .9rem;
+    padding: .5rem;
+    transition: all 0.3s ease; /* Faster transition for hover */
+}
+
+/* Glow effect on hover - Desktop only */
+@media screen and (min-width: 921px) {
+    #navbar .menu > a:not(.active):hover {
+        background-color: transparent;
+        color: var(--color-contrast);
+        text-shadow: 0 0 5px var(--color-contrast), 0 0 10px var(--color-contrast), 0 0 20px var(--color-contrast);
+        border-radius: 4px;
+    }
+
+    #navbar .menu > a:not(.active):hover svg {
+        stroke: var(--color-contrast);
+    }
+}
+
+#navbar .menu > a svg {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+#navbar .menu > a em {
+    font-size: 1rem;
+    font-style: normal;
+}
+
+#navbar .menu > a.active {
+    color: var(--color-logo);
+    /* font-weight: 400; Removed to prevent layout shift */
+    text-shadow: 0 0 5px var(--color-logo);
+    animation: flicker 2.9s infinite alternate;
+}
+
+#hamburger {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+@media screen and (max-width: 920px) {
+    #navbar .wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+    #navbar {
+        display: block;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    #navbar .logo {
+        font-size: 1.8rem;
+        padding: .5rem 1.3rem .5rem 1.7rem;
+    }
+
+    #navbar .logo::after {
+        font-size: 1.4rem;
+        top: 1.6rem;
+        left: 5.1rem;
+    }
+
+    #navbar .menu {
+        display: none;
+        width: 100%;
+        text-align: center;
+        margin-top: .5rem;
+    }
+
+    #navbar .menu.open {
+        display: block;
+    }
+
+    #navbar .menu > a {
+        display: block;
+        width: 100%;
+        padding: .2rem 0;
+        border-top: 1px solid var(--color-transparent);
+        text-align: center;
+    }
+
+    .lang-switcher {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-left: 0;
+        padding: 1.5rem 0;
+        border-top: 1px solid var(--color-transparent);
+        height: auto; /* Reset height for mobile */
+        gap: 1.5rem;
+    }
+
+    .lang-switcher span, 
+    .lang-switcher a {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    #hamburger {
+        display: block;
+    }
+}

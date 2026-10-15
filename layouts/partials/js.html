@@ -1,0 +1,22 @@
+{{ partialCached "assets/js.html" . }}
+{{ if .Site.Params.cookie.enabled }}
+{{ $c := .Site.Params.cookie }}
+{{ $cookieConfig := dict
+    "message" ($c.message | default (i18n "cookieMessage"))
+    "messageLong" ($c.messageLong | default ($c.message | default (i18n "cookieMessage")))
+    "acceptText" ($c.acceptText | default (i18n "cookieAccept"))
+    "rejectText" ($c.rejectText | default (i18n "cookieReject"))
+    "settingsText" ($c.settingsText | default (i18n "cookieSettings"))
+    "modalTitle" ($c.modalTitle | default (i18n "cookieModalTitle"))
+}}
+<script>
+window.cookieConfig = JSON.parse('{{ $cookieConfig | jsonify }}');
+</script>
+{{ $cookie := resources.Get "js/cookie/cookie-consent.js" | minify }}
+{{ if eq hugo.Environment "development" }}
+<script src="{{ $cookie.RelPermalink }}" defer></script>
+{{ else }}
+{{ $cookie = $cookie | fingerprint }}
+<script src="{{ $cookie.RelPermalink }}" integrity="{{ $cookie.Data.Integrity }}" defer></script>
+{{ end }}
+{{ end }}

@@ -1,0 +1,17 @@
+{{- /* Carica lo script di una pagina da assets/js/pages/<name>.js.
+       Param: name, config (dict opzionale, letto dallo script con readConfig).
+       La config va in un <script type="application/json"> così i testi tradotti restano fuori dal JS. */ -}}
+{{- with .config }}
+<script type="application/json" id="{{ $.name }}-config">{{ . | jsonify | safeJS }}</script>
+{{- end }}
+{{- with resources.Get (printf "js/pages/%s.js" .name) }}
+  {{- if hugo.IsDevelopment }}
+    {{- with . | js.Build }}
+<script src="{{ .RelPermalink }}" defer></script>
+    {{- end }}
+  {{- else }}
+    {{- with . | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+    {{- end }}
+  {{- end }}
+{{- end }}

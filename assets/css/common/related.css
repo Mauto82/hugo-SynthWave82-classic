@@ -1,0 +1,60 @@
+.related-posts {
+    width: min(var(--container-width), 95%);
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-transparent);
+}
+
+.related-posts h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: var(--color-contrast);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--content-gap);
+}
+
+.related-card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--color-transparent);
+    padding: var(--padding-card);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.related-card a:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.related-card img {
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: .75rem;
+}
+
+.related-card h3 {
+    font-size: clamp(.95rem, 1.6vw, 1.05rem);
+    line-height: 1.4;
+    color: var(--color-contrast);
+    font-weight: 400;
+    margin: 0;
+}
+
+.post .related-card h3::before,
+article.post .related-card h3::before {
+    content: none;
+}
+
+@media screen and (max-width: 768px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+}

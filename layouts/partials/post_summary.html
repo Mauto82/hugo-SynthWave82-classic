@@ -1,0 +1,39 @@
+{{- $page := . -}}
+{{- $isFirst := false -}}
+{{- if reflect.IsMap . -}}
+{{- $page = .page -}}
+{{- $isFirst = .first | default false -}}
+{{- end -}}
+
+{{ $imgSrc := "" }}
+{{ with $page.Params.cover.image }}
+  {{ if partial "func/cdn-enabled.html" . }}
+    {{ $imgSrc = partial "func/image-url.html" (dict "src" . "preset" "post-small") }}
+  {{ else }}
+    {{ $imgSrc = . | absURL }}
+  {{ end }}
+{{ end }}
+
+<article class="result-card">
+  <a href="{{ $page.RelPermalink }}" class="result-card-link">
+    {{ with $imgSrc }}
+    <div class="result-image">
+      <img src="{{ . }}" alt="{{ $page.Params.cover.alt }}" loading="{{ if $isFirst }}eager{{ else }}lazy{{ end }}">
+    </div>
+    {{ end }}
+    <div class="result-content">
+      <h2 class="result-title">{{ $page.LinkTitle }}</h2>
+      <div class="result-meta">
+        <span class="result-date">{{ $page.Date | time.Format ":date_long" }}</span>
+      </div>
+      {{ with $page.Summary }}
+      <p class="result-summary">{{ . | plainify | truncate 140 }}</p>
+      {{ end }}
+      {{ with $page.Params.tags }}
+      <div class="result-tags">
+        {{ range . | first 3 }}<span class="result-tag">{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </a>
+</article>

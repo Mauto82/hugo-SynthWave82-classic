@@ -1,0 +1,76 @@
+/* Paginazione numerata (home, liste) e dell'archivio */
+.pagination-container {
+    width: min(var(--container-width), 95%);
+    margin: 2rem auto;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-transparent);
+    border-radius: 8px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    background: var(--color-light);
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.page-item:hover:not(.disabled):not(.active):not(.dots) {
+    background: var(--color-brand-light);
+}
+
+.page-item.active {
+    background: var(--color-brand);
+    color: var(--color-light);
+}
+
+.page-item.disabled {
+    opacity: 0.5;
+    color: var(--color-transparent);
+    cursor: not-allowed;
+}
+
+.page-item.dots {
+    background: none;
+    color: var(--color-light);
+    padding: 0 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .pagination-container {
+        width: 95%;
+        gap: 1rem;
+    }
+
+    .pagination {
+        order: 2;
+    }
+
+    .mobile-nav {
+        min-width: 2rem;
+        padding: 0;
+    }
+
+    .page-item {
+        min-width: 2rem;
+        height: 2rem;
+        padding: 0;
+    }
+}

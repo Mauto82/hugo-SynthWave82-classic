@@ -1,0 +1,20 @@
+{{- /* Video MP4. Uso: {{< video src="/video/demo.mp4" title="Demo" caption="..." poster="/img/x.jpg" autoplay="true" loop="true" muted="true" controls="false" >}} */ -}}
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" | default "Video" -}}
+<figure class="post-video">
+  <video
+    {{- if ne (.Get "controls") "false" }} controls{{ end }}
+    {{- if eq (.Get "autoplay") "true" }} autoplay{{ end }}
+    {{- if eq (.Get "loop") "true" }} loop{{ end }}
+    {{- if eq (.Get "muted") "true" }} muted{{ end }}
+    playsinline
+    preload="metadata"
+    aria-label="{{ $title }}"
+    {{- with .Get "poster" }} poster="{{ . | safeURL }}"{{ end }}>
+    <source src="{{ $src | safeURL }}" type="video/mp4">
+    {{ i18n "videoUnsupported" }} <a href="{{ $src | safeURL }}">{{ $title }}</a>.
+  </video>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="content">
+    <div class="post">
+        {{- if .Title }}
+        <h1>{{ .Title }}</h1>
+        {{- end -}}
+        {{- if .Content }}<div class="article-content">{{ .Content }}</div>{{- end -}}
+        {{ partial "contact-form.html" . }}
+    </div>
+</article>
+{{ end }}

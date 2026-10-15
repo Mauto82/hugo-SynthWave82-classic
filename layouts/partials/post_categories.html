@@ -1,0 +1,9 @@
+{{- $searchBase := "search/" | relLangURL -}}
+{{- $cats := index .Params (partial "func/category-taxonomy.html" .) -}}
+<ul class="post-categories">
+    {{- with $cats -}}
+    {{- range . -}}
+    <li><a href="{{ $searchBase }}?q={{ . | urlize }}&amp;type=category">{{ . }}</a></li>
+    {{- end -}}
+    {{- end -}}
+</ul>

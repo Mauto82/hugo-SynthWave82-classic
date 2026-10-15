@@ -1,0 +1,3 @@
+{{- /* true quando le immagini passano dal CDN di Netlify (params.netlifyImageCDN, solo in produzione).
+       Le rotte /cdn-* vanno definite in netlify.toml: vedi exampleSite/netlify.toml. */ -}}
+{{- return (and site.Params.netlifyImageCDN (eq hugo.Environment "production")) -}}

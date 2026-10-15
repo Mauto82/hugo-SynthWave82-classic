@@ -1,0 +1,56 @@
+/* Stili per blocchi matematici display ($$...$$) */
+mjx-container[display="true"] {
+    background-color: var(--color-dark);
+    border: .2rem solid var(--color-brand);
+    border-radius: var(--border-radius-more);
+    padding: var(--padding-card);
+    margin: var(--content-gap) 0;
+    box-shadow: var(--box-shadow);
+    display: block;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    max-width: 100%;
+    color: var(--color-light);
+}
+
+/* Stili per formule matematiche inline ($...$) */
+mjx-container:not([display="true"]) {
+    background: var(--color-transparent);
+    border-radius: var(--border-radius);
+    padding: 0.2rem 0.5rem;
+    color: var(--color-brand);
+    display: inline;
+    font-size: 0.9em;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin: 0 0.1rem;
+}
+
+@media screen and (max-width: 768px) {
+    mjx-container[display="true"] {
+        margin: --content-gap;
+        border-width: .15rem;
+        font-size: 0.9rem !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    mjx-container[display="true"]:hover {
+        transform: none;
+    }
+    
+    /* Scrollbar personalizzata */
+    mjx-container[display="true"]::-webkit-scrollbar {
+        height: .5rem;
+    }
+    
+    mjx-container[display="true"]::-webkit-scrollbar-track {
+        background: var(--color-transparent);
+    }
+    
+    mjx-container[display="true"]::-webkit-scrollbar-thumb {
+        background: var(--color-brand);
+        border-radius: .5rem;
+    }
+}

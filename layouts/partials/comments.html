@@ -1,0 +1,32 @@
+{{- /* Commenti con Giscus (GitHub Discussions). Attivi solo se params.comments.giscus.repo è impostato.
+       Valori da https://giscus.app: repo, repoId, category, categoryId; opzionali mapping, theme, reactions, inputPosition. */ -}}
+{{- with site.Params.comments.giscus -}}
+{{- if .repo -}}
+<script src="https://giscus.app/client.js"
+        data-repo="{{ .repo }}"
+        data-repo-id="{{ .repoId }}"
+        data-category="{{ .category | default "General" }}"
+        data-category-id="{{ .categoryId }}"
+        data-mapping="{{ .mapping | default "pathname" }}"
+        data-strict="1"
+        data-reactions-enabled="{{ cond (eq .reactions false) "0" "1" }}"
+        data-emit-metadata="0"
+        data-input-position="{{ .inputPosition | default "bottom" }}"
+        data-theme="{{ .theme | default "transparent_dark" }}"
+        data-lang="{{ site.Language.Lang }}"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<style>
+    .giscus {
+        margin-top: 2rem;
+        padding: var(--padding-card);
+        background-color: var(--color-transparent);
+        border-radius: var(--border-radius-card);
+        box-shadow: var(--box-shadow);
+    }
+</style>
+{{- end -}}
+{{- end -}}

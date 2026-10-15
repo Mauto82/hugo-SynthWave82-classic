@@ -1,0 +1,130 @@
+.archive {
+    background-color: var(--color-transparent);
+    padding: var(--padding-card);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    display: block;
+    width: min(var(--container-width), 95%);
+    margin: 0 auto;
+}
+
+.archive header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.archive h1 {
+    color: var(--color-contrast);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.archive header > * {
+    display: inline-block;
+}
+
+.archive header h2:after {
+    content: ">";
+    color: var(--color-brand);
+    padding-left: .2rem;
+}
+
+.archive header h2:before {
+    content: "@";
+    color: var(--color-brand);
+    padding-right: .2rem;
+}
+
+/* Timeline: label mese a sinistra (spina), post in griglia responsive a destra */
+.archive .month {
+    display: grid;
+    grid-template-columns: minmax(90px, 130px) 1fr;
+    gap: .75rem 1.5rem;
+    align-items: start;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-transparent);
+}
+
+.archive .month:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+.archive .month h3 {
+    position: relative;
+    color: var(--color-contrast);
+    font-weight: 400;
+}
+
+.archive .month h3:before {
+    content: "~";
+    padding-right: .2rem;
+    color: var(--color-brand);
+}
+
+/* I post del mese fluiscono in colonne in base alla larghezza disponibile */
+.archive .month ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: .6rem 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.archive li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    margin: 0;
+    min-width: 0;
+}
+
+.archive li a:hover {
+    text-decoration: underline;
+}
+
+.archive li > * {
+    flex: initial;
+}
+
+.archive .meta {
+    font-size: .8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+    color: var(--color-warning);
+}
+
+.archive .meta > * {
+    font-style: normal;
+}
+
+.archive .meta > *:not(:last-child):after {
+    content: ",";
+    padding-right: .1rem;
+    color: var(--color-brand);
+}
+
+@media screen and (max-width: 768px) {
+    .archive .month {
+        grid-template-columns: 1fr; /* label mese sopra, post sotto */
+        gap: .4rem;
+        padding-left: .75rem;
+    }
+
+    .archive .month ul {
+        grid-template-columns: 1fr; /* post in colonna singola */
+        gap: .75rem;
+    }
+
+    .archive li {
+        padding-bottom: .25rem;
+    }
+
+    .archive .meta {
+        font-size: .7rem;
+    }
+}

@@ -1,0 +1,8 @@
+{{- $searchBase := "search/" | relLangURL -}}
+<ul class="post-tags">
+    {{- with .Params.tags -}}
+    {{- range . -}}
+    <li><a href="{{ $searchBase }}?q={{ . | urlize }}&amp;type=tag">{{ . }}</a></li>
+    {{- end -}}
+    {{- end -}}
+</ul>

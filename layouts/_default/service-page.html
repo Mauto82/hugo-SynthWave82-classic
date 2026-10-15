@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="content">
+    <div class="post">
+        {{- if .Title }}
+        <h1>{{ .Title }}</h1>
+        {{- end -}}
+        <div class="article-content">
+            {{- if .Content }}{{ .Content }}{{- end -}}
+        </div>
+    </div>
+</article>
+{{ end }}

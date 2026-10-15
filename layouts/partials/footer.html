@@ -1,0 +1,35 @@
+<div class="shortlink">
+    {{ if site.Params.Footer.ShowCategories }}
+    {{ partial "footer_list.html" (dict "Title" (i18n "categories") "List" (index .Site.Taxonomies (partial "func/category-taxonomy.html" .)) ) }}
+    {{ end }}
+    {{ if site.Params.Footer.ShowTags }}
+    {{ partial "footer_list.html" (dict "Title" "Tags" "List" .Site.Taxonomies.tags ) }}
+    {{ end }}
+    {{ if or site.Menus.footer .Site.Params.cookie.enabled }}
+    <section class="other">
+        <h2>{{ i18n "footerMore" }}</h2>
+        <ol>
+            {{ range site.Menus.footer }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+            {{ if .Site.Params.cookie.enabled }}
+            <li><a href="#" id="cookie-settings-link" style="display:none" onclick="showCookieSettings(event)">{{ i18n "cookieReset" }}</a></li>
+            {{ end }}
+        </ol>
+    </section>
+    {{ end }}
+    {{ if site.Params.Footer.ShowSocial }}
+    <section class="social">
+        {{ range site.Params.Social }}
+        <a href="{{ .url }}" alt="{{ .name }}" title="{{ .name }}">{{ partial "icon.html" (dict "Icon" .icon) }}</a>
+        {{ end }}
+    </section>
+    {{ end }}
+</div>
+<p class="copyright">
+{{- if site.Copyright }}
+{{ site.Copyright | markdownify }}
+{{- else }}
+&copy; {{ now.Year }} <a href="{{ "" | relLangURL }}">{{ site.Title }}</a>
+{{- end }}
+</p>

@@ -1,0 +1,27 @@
+{{- if not (hugo.IsProduction | or (eq site.Params.env "production")) -}}
+User-agent: *
+Disallow: /
+{{- else -}}
+# Ricerca interna e indici JSON: pagine senza valore per i motori, solo spreco di crawl.
+User-agent: *
+{{- range hugo.Sites }}
+Disallow: {{ .LanguagePrefix }}/search/
+{{- end }}
+{{- range hugo.Sites }}
+Disallow: {{ .LanguagePrefix }}/index.json
+{{- end }}
+
+# I motori di ricerca non devono scansionare le versioni Markdown (duplicati dell'HTML);
+# restano accessibili agli agenti AI (vedi /llms.txt).
+User-agent: Googlebot
+User-agent: Bingbot
+{{- range hugo.Sites }}
+Disallow: {{ .LanguagePrefix }}/search/
+{{- end }}
+{{- range hugo.Sites }}
+Disallow: {{ .LanguagePrefix }}/index.json
+{{- end }}
+Disallow: /*.md$
+{{- end }}
+
+Sitemap: {{ "sitemap.xml" | absURL }}

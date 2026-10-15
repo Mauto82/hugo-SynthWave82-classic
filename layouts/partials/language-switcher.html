@@ -1,0 +1,19 @@
+{{- $langs := sort .Site.Home.AllTranslations "Language.Weight" -}}
+{{- if gt (len $langs) 1 -}}
+<div class="lang-switcher">
+  {{- $page := . -}}
+  {{- $currentLang := .Site.Language.Lang -}}
+  {{- range $langs -}}
+    {{- $lang := .Language.Lang -}}
+    {{- if eq $lang $currentLang -}}
+      <span class="lang-current" aria-current="page">{{ $lang | upper }}</span>
+    {{- else -}}
+      {{- $url := .RelPermalink -}}
+      {{- range $page.AllTranslations -}}
+        {{- if eq .Language.Lang $lang -}}{{- $url = .RelPermalink -}}{{- end -}}
+      {{- end -}}
+      <a href="{{ $url }}" class="lang-link" hreflang="{{ $lang }}" lang="{{ $lang }}">{{ $lang | upper }}</a>
+    {{- end -}}
+  {{- end -}}
+</div>
+{{- end -}}

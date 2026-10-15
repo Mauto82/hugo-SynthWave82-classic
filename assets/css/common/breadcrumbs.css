@@ -1,0 +1,28 @@
+.breadcrumbs {
+    color: var(--color-brand);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.0rem;
+    gap: .2rem;
+    padding: .5rem;
+    background-color: var(--color-transparent);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+}
+
+
+.breadcrumbs a {
+    font-size: 0.9rem;
+}
+
+.breadcrumbs span {
+    font-size: 1.2rem;
+}
+
+.breadcrumbs:after {
+    -webkit-animation: blink 1s infinite;
+    -moz-animation: blink 1s infinite;
+    -o-animation: blink 1s infinite;
+    animation: blink 1s infinite;
+    content: "_";
+}

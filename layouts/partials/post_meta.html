@@ -1,0 +1,12 @@
+
+<div class="meta">
+{{ if not .Date.IsZero }}
+    <time datetime='{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}'>{{ .Date.Day }} {{ .Date | time.Format "Jan" | strings.FirstUpper }} {{ .Date.Year }}</time>
+{{ end }}
+{{ if site.Params.Post.ShowAuthor }}
+    <em>{{ partial "author.html" . }}</em>
+{{ end }}
+{{ if site.Params.Post.ShowReadingTime }}
+    <em>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</em>
+{{ end }}
+</div>

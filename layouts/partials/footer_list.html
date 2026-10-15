@@ -1,0 +1,19 @@
+<section>
+    <h2>{{ .Title }}</h2>
+    <ul>
+        {{ $sortedList := .List.ByCount }}
+        {{ $counterItems := 0 }}
+        {{ range $sortedList }}
+            {{ $counterItems = add $counterItems 1 }}
+            {{ if le $counterItems site.Params.Footer.maxFooterListItems }}
+            <li>
+                <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+                <span>{{ .Count }}</span>
+            </li>
+            {{ end }}
+        {{ end }}
+        {{ if gt $counterItems site.Params.Footer.maxFooterListItems }}
+        <li>...</li>
+        {{ end }}
+    </ul>
+</section>

@@ -1,0 +1,101 @@
+/* ── Shared max-width for all home elements ── */
+.home-layout,
+.posts-grid {
+    width: min(var(--container-width), 95%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+}
+
+/* Hero delle sezioni (guide, categorie, cerca): stessa larghezza del contenuto.
+   Niente margin-bottom: la spaziatura la dà il gap di main.container. */
+.section-hero {
+    width: min(var(--container-width), 95%);
+    margin: 0 auto;
+}
+
+/* ── Hero ── */
+.hero-synthwave {
+    position: relative;
+    border-radius: var(--border-radius-card);
+    overflow: hidden;
+    line-height: 0;
+}
+
+.hero-synthwave .hero-img {
+    width: 100%;
+    height: clamp(190px, 24vw, 340px);
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(41, 29, 56, 0.15) 0%,
+        rgba(41, 29, 56, 0.65) 60%,
+        rgba(41, 29, 56, 0.90) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem 0.4rem;
+    gap: 0.5rem;
+}
+
+.hero-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 800;
+    color: var(--color-brand);
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 0 1rem rgba(242, 43, 179, 0.6);
+}
+
+.hero-desc {
+    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+    color: var(--color-light);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ── Search inside home-layout — reset margins ── */
+.home-layout .home-search-container {
+    margin: 0;
+    width: 100%;
+}
+
+/* ── Posts grid ── */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+}
+
+/* Schermi grandi: 3 colonne (paginazione a 12 = divisibile per 2 e 3) */
+@media screen and (min-width: 1280px) {
+    .posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-overlay {
+        padding: 1rem 1.2rem 0.65rem;
+    }
+    .hero-desc {
+        display: none;
+    }
+}

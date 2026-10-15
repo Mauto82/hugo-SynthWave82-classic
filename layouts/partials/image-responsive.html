@@ -1,0 +1,26 @@
+{{- $image := .image -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "cover-image" -}}
+{{- $width := .width | default 800 -}}
+{{- $height := .height | default 400 -}}
+{{- $priority := .priority | default false -}}
+{{- $sizes := .sizes | default "(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 600px, 800px" -}}
+<picture>
+    {{ if not (partial "func/cdn-enabled.html" .) }}
+    <source srcset="{{ $image | relURL }} 400w,
+                    {{ $image | relURL }} 800w"
+        sizes="{{ $sizes }}" type="image/jpeg">
+    {{ else }}
+    <source srcset="/cdn-post-small/{{ $image }} 400w,
+                    /cdn-post-medium/{{ $image }} 600w,
+                    /cdn-post-big/{{ $image }} 800w"
+        sizes="{{ $sizes }}" type="image/avif">
+    <source srcset="/cdn-post-small-webp/{{ $image }} 400w,
+                    /cdn-post-medium-webp/{{ $image }} 600w,
+                    /cdn-post-big-webp/{{ $image }} 800w"
+        sizes="{{ $sizes }}" type="image/webp">
+    {{ end }}
+    <img src="{{ $image | relURL }}" alt="{{ $alt }}" class="{{ $class }}"
+        width="{{ $width }}" height="{{ $height }}" {{ if $priority }}fetchpriority="high" {{ else }}loading="lazy" {{ end }}
+        decoding="async">
+</picture>

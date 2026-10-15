@@ -1,0 +1,3 @@
+{{- /* Nome (plurale) della tassonomia delle categorie per la lingua corrente.
+       Default "categories"; per un'altra lingua impostare languages.<lang>.params.categoryTaxonomy. */ -}}
+{{- return (site.Params.categoryTaxonomy | default "categories") -}}

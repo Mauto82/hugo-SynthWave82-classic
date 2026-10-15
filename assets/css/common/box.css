@@ -1,0 +1,29 @@
+.post-summary a {
+    background-color: var(--color-transparent);
+    padding: var(--padding-card);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    display: block;
+}
+
+.post-summary a:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.post-summary p {
+    color: var(--color-light);
+    text-align: justify;
+}
+
+.post-summary p:before {
+    content: "> ";
+}
+
+.post-summary p:after {
+    -webkit-animation: blink 1s infinite;
+    -moz-animation: blink 1s infinite;
+    -o-animation: blink 1s infinite;
+    animation: blink 1s infinite;
+    content: "|";
+}

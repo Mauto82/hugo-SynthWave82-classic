@@ -1,0 +1,77 @@
+.sticky-share .facebook { background-color: #3b5998; }
+.sticky-share .x { background-color: #333; }
+.sticky-share .telegram { background-color: #0088cc; }
+.sticky-share .whatsapp { background-color: #25D366; }
+.sticky-share .email { background-color: #808080; }
+.sticky-share .clipboard-copy { background-color: var(--color-success); }
+
+.sticky-share {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.sticky-share a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity .2s;
+    color: white;
+    gap: .2em;
+}
+
+.sticky-share a:first-child {
+    border-top-right-radius: var(--border-radius);
+}
+
+.sticky-share a:last-child {
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.tooltip {
+    position: absolute;
+    left: 45px;
+    background: var(--color-dark);
+    color: var(--color-light);
+    padding: .5rem;
+    border-radius: var(--border-radius);
+    font-size: .9rem;
+    display: none;
+}
+
+/* Fino a 1024px la share sta in barra in basso: sopra i 1024 il gutter laterale
+   (>=78px) lascia spazio alla versione fixed-left senza coprire il testo. */
+@media (max-width: 1024px) {
+    .tooltip {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .sticky-share {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        background: rgba(0, 0, 0, .9); /* Increased opacity for better visibility */
+        padding: .5rem;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+        z-index: 2000; /* Ensure it's on top of everything */
+    }
+
+    .sticky-share a {
+        border-radius: var(--border-radius);
+    }
+}
+
+.sticky-share a:hover {
+    opacity: 0.8;
+}

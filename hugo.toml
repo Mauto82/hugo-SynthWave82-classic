@@ -1,0 +1,39 @@
+# Configurazione di default del tema SynthWave82.
+# Hugo unisce questi valori con quelli del sito: il sito ha sempre la precedenza.
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.146.0"
+
+# llms.txt per gli agenti AI e versione Markdown di ogni pagina.
+[outputFormats]
+  [outputFormats.llms]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.markdown]
+    mediaType = "text/markdown"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+
+[params]
+  shortTitle = "SynthWave82"
+  tutorialVisiblePosts = 3
+  [params.home]
+    postSummary = true
+    showPaginatorArrows = true
+  [params.post]
+    showCategories = true
+    showTags = true
+    showMeta = true
+    showReadingTime = true
+    showAuthor = true
+    showNav = true
+  [params.footer]
+    showTags = true
+    showCategories = true
+    showSocial = true
+    maxFooterListItems = 10

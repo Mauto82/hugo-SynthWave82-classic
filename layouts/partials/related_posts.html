@@ -1,0 +1,24 @@
+{{- /* Articoli correlati: prima quelli simili (config "related" del sito), poi i più recenti fino a 3. */ -}}
+{{- $max := 3 -}}
+{{- $others := where (where site.RegularPages "Section" "posts") "Permalink" "!=" .Permalink -}}
+{{- $related := first $max ($others.Related .) -}}
+{{- if lt (len $related) $max -}}
+  {{- $related = $related | append (first (sub $max (len $related)) ($others | complement $related)) -}}
+{{- end -}}
+{{- with $related }}
+<aside class="related-posts" aria-label="{{ i18n "related_posts" }}">
+    <h2>{{ i18n "related_posts" }}</h2>
+    <div class="related-grid">
+        {{- range . }}
+        <article class="related-card">
+            <a href="{{ .RelPermalink }}">
+                {{- with .Params.cover }}
+                {{ partial "image-responsive.html" (dict "image" .image "alt" .alt "width" 400 "height" 200 "sizes" "(max-width: 768px) calc(100vw - 2rem), 280px") }}
+                {{- end }}
+                <h3>{{ .LinkTitle }}</h3>
+            </a>
+        </article>
+        {{- end }}
+    </div>
+</aside>
+{{- end }}

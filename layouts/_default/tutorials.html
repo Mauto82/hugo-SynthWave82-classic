@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{ partial "hero-banner.html" (dict
+    "base"  (site.Params.hero.guides | default "images/hero-guide.webp")
+    "title" .Title
+    "desc"  (.Content | plainify | chomp)
+) }}
+
+{{ partial "search-box.html" (dict
+    "ctx"         .
+    "id"          "tutorial-search"
+    "placeholder" (i18n "guidesSearchPlaceholder")
+    "global"      false
+    "sections"    (slice "tutorials" "posts" "tags")
+    "class"       "tutorial-search-container"
+) }}
+
+{{- /* Serie di guide: post con lo stesso param `tutorial`, ordinati per `tutorialId`.
+       Le serie più recenti (per data del primo post) vengono prima. */}}
+{{- $series := slice -}}
+{{- range (where (where site.RegularPages "Section" "posts") "Params.tutorial" "!=" nil).GroupByParam "tutorial" -}}
+  {{- $series = $series | append (dict "name" .Key "start" (index .Pages.ByDate 0).Date "pages" (.Pages.ByParam "tutorialId")) -}}
+{{- end }}
+
+<div class="tutorial">
+  {{- range sort $series "start" "desc" }}
+  <div class="post">
+    <h2 data-tutorial="{{ .name }}">{{ .name }}</h2>
+    <div class="tutorial-date">{{ .start.Format "02/01/2006" }}</div>
+    <ol class="tutorial-list">
+      {{- range .pages }}
+      <li>
+        <a href="{{ .Permalink }}" data-title="{{ .Title }}" data-tags="{{ delimit (.Params.tags | default slice) ", " }}">{{ .Title | markdownify }}</a>
+      </li>
+      {{- end }}
+    </ol>
+    <button class="show-more" style="display: none;">{{ i18n "showMore" }}</button>
+  </div>
+  {{- end }}
+</div>
+
+{{ partial "page-script.html" (dict
+    "name"   "tutorials"
+    "config" (dict
+        "visiblePosts" (site.Params.tutorialVisiblePosts | default 3)
+        "i18n" (dict "showMore" (i18n "showMore") "showLess" (i18n "showLess"))
+    )
+) }}
+{{ end }}

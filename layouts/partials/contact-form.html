@@ -1,0 +1,53 @@
+{{- /* Modulo contatti.
+       params.contactForm.provider: "netlify" (default, Netlify Forms) oppure "custom" con params.contactForm.action (es. Formspree).
+       params.contactForm.successURL: pagina di conferma (per lingua). params.privacyPolicyURL: link all'informativa (per lingua). */ -}}
+{{- $cfg := site.Params.contactForm | default dict -}}
+{{- $netlify := eq ($cfg.provider | default "netlify") "netlify" -}}
+{{- $success := "" -}}
+{{- with $cfg.successURL }}{{ $success = . | relLangURL }}{{ end -}}
+{{- $action := cond $netlify $success ($cfg.action | default "") -}}
+<form
+        name="contact"
+        method="POST"
+        {{- if $netlify }}
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        {{- end }}
+        action="{{ $action }}"
+        class="contact-form">
+    {{- if $netlify }}
+    <p class="hidden">
+        <label>{{ i18n "contactHoneypot" }}: <input name="bot-field" /></label>
+    </p>
+    {{- end }}
+    {{- with $success }}
+    <input type="hidden" name="success_url" value="{{ . }}" />
+    {{- end }}
+    <div class="form-group">
+        <label>{{ i18n "contactName" }}</label>
+        <input type="text" name="name" required />
+    </div>
+
+    <div class="form-group">
+        <label>{{ i18n "contactEmail" }}</label>
+        <input type="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+        <label>{{ i18n "contactSubject" }}</label>
+        <input type="text" name="subject" required />
+    </div>
+
+    <div class="form-group">
+        <label>{{ i18n "contactMessage" }}</label>
+        <textarea name="message" required></textarea>
+    </div>
+
+    {{ with site.Params.privacyPolicyURL }}
+    <p class="form-privacy">
+        {{ i18n "contactPrivacy" (dict "URL" (. | relLangURL)) | safeHTML }}
+    </p>
+    {{ end }}
+
+    <button type="submit">{{ i18n "contactSend" }}</button>
+</form>

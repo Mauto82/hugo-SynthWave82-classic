@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ $articles := slice "/posts/" }}
+  {{- $isCategorie := and (eq .Kind "taxonomy") (eq .Data.Plural (partial "func/category-taxonomy.html" .)) -}}
+  {{ if $isCategorie }}
+    {{ partial "hero-banner.html" (dict
+        "base"  (site.Params.hero.categories | default "images/hero-categorie.webp")
+        "title" .Title
+        "desc"  (i18n "categoriesHeroDesc")
+    ) }}
+  {{ end }}
+  {{ if not $isCategorie }}
+  <div class="content archive-list">
+    {{- if .Title }}<h1>{{ .Title }}</h1>{{ end }}
+    {{- if .Content }}{{ .Content }}{{ end }}
+  </div>
+  {{ end }}
+  {{ if in $articles .RelPermalink }}
+    {{- partial "list_article.html" .Pages -}}
+  {{ else if eq .Kind "term" }}
+    {{- partial "list_term.html" .Pages -}}
+  {{ else }}
+    {{- partial "list_word.html" (.Pages.ByTitle) -}}
+  {{ end }}
+{{ end }}

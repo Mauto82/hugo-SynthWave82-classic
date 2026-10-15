@@ -1,0 +1,54 @@
+{{ define "main" }}
+{{ $pages := where site.RegularPages "Section" "posts" }}
+
+<div class="home-layout">
+  {{ partial "hero-banner.html" (dict
+      "base"  (site.Params.hero.archives | default "images/hero-xfiles.webp")
+      "title" .Title
+      "desc"  (i18n "archivesHeroDesc")
+      "class" ""
+  ) }}
+
+  <div class="home-search-container">
+    {{ partial "search-box.html" (dict
+        "ctx"             .
+        "id"              "archive-search"
+        "placeholder"     (i18n "searchPlaceholder")
+        "showSuggestions" true
+    ) }}
+  </div>
+</div>
+
+<div id="archive-content" class="archive">
+
+    {{- /* Tutti i post per anno e mese; archive.js mostra 12 mesi per pagina */}}
+    {{ range $pages.GroupByPublishDate "2006" }}
+    <div class="archive-year">
+        <header>
+            <h2>{{ .Key }}</h2><sup>{{ len .Pages }}</sup>
+        </header>
+
+        {{ range .Pages.GroupByDate "January" }}
+        <div class="month">
+            <h3>{{ .Key | strings.FirstUpper }} <sup>{{ len .Pages }}</sup></h3>
+            <ul>
+                {{ range .Pages }}
+                <li>
+                    <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                    <span class="archive-meta">
+                        {{ partial "post_meta.html" . }}
+                    </span>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+
+<div id="archive-pagination" class="pagination-container" style="display:none;"></div>
+
+{{ partial "page-script.html" (dict "name" "archive") }}
+
+{{ end }}

@@ -1,0 +1,31 @@
+{{ $content := .content }}
+{{ $site := .site }}
+
+{{/* Store code blocks */}}
+{{ $codeBlocks := slice }}
+{{ $content = replaceRE "(?s)<pre><code.*?</code></pre>" "CODEBLOCK" $content }}
+{{ range $match := findRE "(?s)<pre><code.*?</code></pre>" .content }}
+{{ $codeBlocks = $codeBlocks | append $match }}
+{{ end }}
+
+{{/* Store header blocks */}}
+{{ $headerBlocks := slice }}
+{{ $content = replaceRE "<h[1-6][^>]*>.*?</h[1-6]>" "HEADERBLOCK" $content }}
+{{ range $match := findRE "<h[1-6][^>]*>.*?</h[1-6]>" .content }}
+{{ $headerBlocks = $headerBlocks | append $match }}
+{{ end }}
+
+{{/* Replace tags with links - case insensitive */}}
+{{ range $term := $site.Taxonomies.tags }}
+{{ $content = replaceRE (printf "(?i)\\b%s\\b" .Page.Title) (printf "<a href=\"%s\" class=\"highlighted\">%s</a>" .Page.RelPermalink .Page.Title) $content }}
+{{ end }}
+
+{{/* Restore blocks */}}
+{{ range $block := $headerBlocks }}
+{{ $content = replace $content "HEADERBLOCK" $block 1 }}
+{{ end }}
+{{ range $block := $codeBlocks }}
+{{ $content = replace $content "CODEBLOCK" $block 1 }}
+{{ end }}
+
+{{ $content | safeHTML }}

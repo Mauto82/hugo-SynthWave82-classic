@@ -1,0 +1,114 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ .Site.Title }}",
+        "description": "{{ .Site.Params.description }}",
+        "url": "{{ .Site.BaseURL }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.author.name }}",
+            "url": "{{ .Site.Params.author.url }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.Params.shortTitle | default site.Title }}"
+        }
+    }
+</script>
+{{ else if eq (.Param "schema") "person" }}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": "{{ .Permalink }}",
+        "name": "{{ .Title }}",
+        "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+        "inLanguage": "{{ .Language.Lang }}",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.author.name }}",
+            "url": "{{ .Permalink }}",
+            "jobTitle": ["Senior Software Developer", "IT Manager", "Technical Team Lead"],
+            "knowsAbout": ["Software Architecture", "Design Patterns", "Domain-Driven Design", "Artificial Intelligence", "Python", "PHP"],
+            {{- $social := slice }}{{ range .Site.Params.social }}{{ $social = $social | append .url }}{{ end }}
+            "sameAs": {{ $social }}
+        }
+    }
+</script>
+{{ else if .IsPage }}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ .Permalink }}"
+        },
+        "headline": "{{ .Title }}",
+        "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+        "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+        "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}",
+    "author": {
+    "@type": "Person",
+    "name": "{{ $.Site.Params.author.name }}",
+    "url": "{{ $.Site.Params.author.url }}"
+    },
+    {{ with index .Params (partial "func/category-taxonomy.html" .) }}
+    "articleSection": {{ . }},
+    {{ end }}
+    {{ with .Params.tags }}
+    "keywords": {{ . }},
+    {{ end }}
+    {{ with .Params.cover }}
+    "image": {
+    "@type": "ImageObject",
+    "url": "{{ .image | absURL }}",
+    "caption": "{{ .caption }}"
+    },
+    {{ end }}
+    "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}"
+    }
+    }
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ .Site.BaseURL }}"
+            }
+            {{ $catTaxonomy := partial "func/category-taxonomy.html" . }}
+            {{ with index .Params $catTaxonomy }}
+            {{ $firstCat := index . 0 }}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ $firstCat }}",
+                "item": "{{ printf "%s/%s/" $catTaxonomy ($firstCat | urlize) | absLangURL }}"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $.Title | htmlEscape }}",
+                "item": "{{ $.Permalink }}"
+            }
+            {{ else }}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ .Title | htmlEscape }}",
+                "item": "{{ .Permalink }}"
+            }
+            {{ end }}
+        ]
+    }
+</script>
+{{ end }}

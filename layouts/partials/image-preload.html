@@ -1,0 +1,10 @@
+{{- if partial "func/cdn-enabled.html" . -}}
+{{- $image := . -}}
+<link rel="preload" as="image"
+    imagesrcset="/cdn-post-small/{{ $image }} 400w, /cdn-post-medium/{{ $image }} 600w, /cdn-post-big/{{ $image }} 800w"
+    imagesizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 600px, 800px"
+    type="image/avif"
+    fetchpriority="high" />
+{{- else -}}
+<link rel="preload" as="image" href="{{ . | relURL }}" fetchpriority="high" />
+{{- end -}}

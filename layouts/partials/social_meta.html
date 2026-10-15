@@ -1,0 +1,27 @@
+{{- /* Open Graph e Twitter card. Home: dati del sito; pagine: titolo, descrizione e cover. */ -}}
+{{- $type := "article" -}}
+{{- $url := .Permalink -}}
+{{- $title := .Title -}}
+{{- $description := .Description | default .Summary -}}
+{{- $image := .Params.cover.image -}}
+{{- if .IsHome -}}
+  {{- $type = "website" -}}
+  {{- $url = site.BaseURL -}}
+  {{- $title = site.Title -}}
+  {{- $description = site.Params.description -}}
+  {{- $image = site.Params.images -}}
+{{- end }}
+<meta property="og:type" content="{{ $type }}">
+<meta property="og:url" content="{{ $url }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+{{- with $image }}
+<meta property="og:image" content="{{ . | absURL }}">
+{{- end }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ $url }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{- with $image }}
+<meta name="twitter:image" content="{{ . | absURL }}">
+{{- end }}

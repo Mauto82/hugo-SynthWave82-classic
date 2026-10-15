@@ -1,0 +1,33 @@
+{{- /* Barra di condivisione. Ogni rete si attiva con params.stickyShare.<rete>: facebook, x, whatsapp, telegram, email, clipboard.
+       I link funzionano anche senza JavaScript; solo "copia link" usa share.js. */ -}}
+{{- with site.Params.stickyShare }}{{ if .active }}
+{{- $cfg := . -}}
+{{- $url := $.Permalink | urlquery -}}
+{{- $title := replace ($.Title | urlquery) "+" "%20" -}}
+{{- $networks := slice
+    (dict "key" "facebook" "label" "Facebook" "icon" "facebook" "href" (printf "https://www.facebook.com/sharer/sharer.php?u=%s" $url))
+    (dict "key" "x"        "label" "X"        "icon" "x"        "href" (printf "https://x.com/intent/post?url=%s&text=%s" $url $title))
+    (dict "key" "whatsapp" "label" "WhatsApp" "icon" "whatsapp" "href" (printf "https://wa.me/?text=%s%%20%s" $title $url))
+    (dict "key" "telegram" "label" "Telegram" "icon" "telegram" "href" (printf "https://t.me/share/url?url=%s&text=%s" $url $title))
+-}}
+<div class="sticky-share">
+  {{- range $networks }}
+    {{- if index $cfg .key }}
+  <a href="{{ .href | safeURL }}" class="{{ .key }}" target="_blank" rel="noopener noreferrer" title="{{ i18n "shareOn" (dict "Network" .label) }}">
+    {{ partial "icon.html" (dict "Icon" .icon) }}
+  </a>
+    {{- end }}
+  {{- end }}
+  {{- if $cfg.email }}
+  <a href="{{ printf "mailto:?subject=%s&body=%s" $title $url | safeURL }}" class="email" title="{{ i18n "shareEmail" }}">
+    {{ partial "icon.html" (dict "Icon" "mail") }}
+  </a>
+  {{- end }}
+  {{- if $cfg.clipboard }}
+  <a href="{{ $.Permalink }}" class="clipboard-copy" data-copy-url="{{ $.Permalink }}" title="{{ i18n "copyLink" }}">
+    {{ partial "icon.html" (dict "Icon" "content_copy") }}
+    <span class="tooltip">{{ i18n "linkCopied" }}</span>
+  </a>
+  {{- end }}
+</div>
+{{- end }}{{ end }}

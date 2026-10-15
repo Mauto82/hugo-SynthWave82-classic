@@ -1,0 +1,59 @@
+# Rotte per params.netlifyImageCDN: il CDN immagini di Netlify ridimensiona e converte (avif/webp) al volo.
+# Copia questo blocco nel netlify.toml del tuo sito.
+
+[[redirects]]
+from = "/cdn-hero-sm/*"
+to = "/.netlify/images?url=/:splat&w=700&h=350&fit=cover&fm=avif&q=50"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-hero-md/*"
+to = "/.netlify/images?url=/:splat&w=900&h=450&fit=cover&fm=avif&q=50"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-hero-lg/*"
+to = "/.netlify/images?url=/:splat&w=1200&h=600&fit=cover&fm=avif&q=55"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-post-big/*"
+to = "/.netlify/images?url=/:splat&w=800&h=400&fit=cover&fm=avif&q=45"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-post-small/*"
+to = "/.netlify/images?url=/:splat&w=400&h=200&fit=cover&fm=avif&q=45"
+status = 200
+force = true
+
+# Gap mobile DPR: a ~340-400px CSS con DPR 1.75x il browser richiede ~595-700px fisici.
+# Senza questo slot saltava da 400w a 800w (~14 KiB sprecati per immagine).
+[[redirects]]
+from = "/cdn-post-medium/*"
+to = "/.netlify/images?url=/:splat&w=600&h=300&fit=cover&fm=avif&q=45"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-post-big-webp/*"
+to = "/.netlify/images?url=/:splat&w=800&h=400&fit=cover&fm=webp&q=75"
+status = 200
+force = true
+
+[[redirects]]
+from = "/cdn-post-small-webp/*"
+to = "/.netlify/images?url=/:splat&w=400&h=200&fit=cover&fm=webp&q=75"
+status = 200
+force = true
+
+# Variante webp del gap mobile DPR — fallback per browser che non supportano avif.
+[[redirects]]
+from = "/cdn-post-medium-webp/*"
+to = "/.netlify/images?url=/:splat&w=600&h=300&fit=cover&fm=webp&q=75"
+status = 200
+force = true

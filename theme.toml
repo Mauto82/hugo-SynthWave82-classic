@@ -1,0 +1,17 @@
+name = 'SynthWave82 Classic'
+license = 'MIT'
+licenselink = 'https://github.com/Mauto82/hugo-SynthWave82-classic/blob/main/LICENSE'
+description = 'A synthwave / retrowave inspired theme for Hugo, with multilingual support, taxonomies, search, related posts and a privacy-friendly cookie consent banner.'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/Mauto82/hugo-SynthWave82-classic'
+
+min_version = '0.146.0'
+
+[author]
+  name = 'Matteo'
+  homepage = 'https://github.com/Mauto82'
+
+# Taxonomy terms
+tags = ['blog', 'synthwave', 'retrowave', 'dark', 'multilingual', 'responsive']
+features = ['multilingual', 'taxonomies', 'search', 'related-posts', 'cookie-consent', 'dark-theme']

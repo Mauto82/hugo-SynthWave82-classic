@@ -1,0 +1,178 @@
+- id: prev_page
+  translation: "Precedente"
+
+- id: next_page
+  translation: "Successivo"
+
+- id: read_time
+  translation:
+    one: "1 min"
+    other: "{{ .Count }} min"
+
+- id: home
+  translation: "Home"
+
+- id: related_posts
+  translation: "Articoli suggeriti"
+
+- id: searchPlaceholder
+  translation: "Cerca nel blog..."
+
+- id: searchPosts
+  translation: "Posts"
+
+- id: categories
+  translation: "Categorie"
+
+- id: authors
+  translation: "Autori"
+
+- id: categoriesHeroDesc
+  translation: "Esplora tutti gli argomenti del blog."
+
+- id: archivesHeroDesc
+  translation: "La verità è là fuori — tutti i post del blog, anno per anno."
+
+- id: searchHeroDesc
+  translation: "Cerca tra articoli, autori, tag e categorie: digita una parola chiave per iniziare."
+
+- id: guidesSearchPlaceholder
+  translation: "Cerca una guida..."
+
+- id: guidesTitle
+  translation: "Guide e tutorial"
+
+- id: showMore
+  translation: "Mostra altri"
+
+- id: showLess
+  translation: "Mostra meno"
+
+- id: searchNoResultsFor
+  translation: "Nessun risultato per"
+
+- id: searchResultOne
+  translation: "risultato"
+
+- id: searchResultOther
+  translation: "risultati"
+
+- id: searchFor
+  translation: "per"
+
+- id: searchTypeTag
+  translation: "tag"
+
+- id: searchTypeCategory
+  translation: "categoria"
+
+- id: searchTypeAuthor
+  translation: "autore"
+
+- id: searchLoadError
+  translation: "Errore nel caricamento della ricerca"
+
+- id: searchErrorDetails
+  translation: "Dettagli"
+
+- id: language
+  translation: "Lingua"
+
+- id: published
+  translation: "Pubblicato"
+
+- id: updated
+  translation: "Aggiornato"
+
+- id: author
+  translation: "Autore"
+
+- id: guide
+  translation: "Guida"
+
+- id: part
+  translation: "parte"
+
+- id: translation
+  translation: "Traduzione"
+
+- id: pages
+  translation: "Pagine"
+
+- id: articles
+  translation: "Articoli"
+
+- id: llmsOptional
+  translation: "Altro"
+
+- id: llmsMarkdownNote
+  translation: "Ogni pagina ha una versione Markdown allo stesso indirizzo con `index.md` al posto della barra finale (es. {{ .Example }})."
+
+- id: llmsOtherLanguage
+  translation: "Versione {{ .Language }} di questo file: {{ .URL }}"
+
+- id: footerMore
+  translation: "Altro"
+
+- id: cookieReset
+  translation: "Reimposta Consensi"
+
+- id: contactHoneypot
+  translation: "Non compilare questo se sei umano"
+
+- id: contactName
+  translation: "Il tuo nome"
+
+- id: contactEmail
+  translation: "La tua email"
+
+- id: contactSubject
+  translation: "Oggetto"
+
+- id: contactMessage
+  translation: "Messaggio"
+
+- id: contactSend
+  translation: "Invia Messaggio"
+
+- id: contactPrivacy
+  translation: "Uso i dati inseriti solo per risponderti. Dettagli nell'<a href=\"{{ .URL }}\">informativa privacy</a>."
+
+- id: termDescription
+  translation: "Esplora tutti gli articoli di {{ .Title }} su {{ .Site }}."
+
+- id: lang_it
+  translation: "italiana"
+
+- id: lang_en
+  translation: "inglese"
+
+- id: shareOn
+  translation: "Condividi su {{ .Network }}"
+
+- id: shareEmail
+  translation: "Condividi via email"
+
+- id: copyLink
+  translation: "Copia link"
+
+- id: cookieMessage
+  translation: "Questo sito non usa cookie."
+
+- id: cookieAccept
+  translation: "Accetta"
+
+- id: cookieReject
+  translation: "Rifiuta"
+
+- id: cookieSettings
+  translation: "Dettagli"
+
+- id: cookieModalTitle
+  translation: "Privacy e preferenze"
+
+- id: linkCopied
+  translation: "Copiato"
+
+- id: videoUnsupported
+  translation: "Il tuo browser non supporta il video. Puoi aprire il file direttamente:"

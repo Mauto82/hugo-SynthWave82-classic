@@ -1,0 +1,170 @@
+/* =========================================================
+   search.css — pagina di ricerca centralizzata
+   Usa le CSS variables del tema synthwave82
+   ========================================================= */
+
+.search-page {
+  width: min(var(--container-width), 95%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+}
+
+/* Ensure the container takes full width of the parent (search-page) */
+.search-page .search-container {
+  width: 100%;
+  margin: 0;
+}
+
+.search-header h1 {
+  color: var(--color-brand);
+}
+
+.search-description {
+  color: var(--color-brand-light);
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+}
+
+/* ── Search Box Wrapper ───────────────────────────────── */
+/* Matches layouts/partials/search-box.html structure */
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  /* Removed gap to match archives.css/tutorial style */
+  background: var(--color-transparent);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem 1rem;
+  transition: box-shadow 0.3s ease;
+  position: relative; /* For suggestions dropdown if needed */
+}
+
+.search-wrapper:focus-within {
+  box-shadow: var(--box-shadow-hover);
+}
+
+.search-wrapper .search-icon {
+  color: var(--color-brand);
+  width: 1.3rem;
+  height: 1.3rem;
+  flex-shrink: 0;
+  margin-left: 0.8rem; /* Match archives.css margin */
+}
+
+.search-wrapper .search-input {
+  width: 100%;
+  background: transparent;
+  color: var(--color-light);
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+.search-wrapper .search-input::placeholder {
+  color: var(--color-brand-light);
+  opacity: 0.6;
+}
+
+/* Hide native X button */
+.search-wrapper .search-input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ── Messaggi di stato ────────────────────────────────── */
+
+.search-instructions,
+.search-no-results {
+  color: var(--color-brand-light);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.search-error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.search-count {
+  color: var(--color-brand-light);
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.search-count strong {
+  color: var(--color-contrast);
+}
+
+/* ── Grid risultati ───────────────────────────────────── */
+/* Card styles (.result-card etc.) are in theme cards.css (loaded globally) */
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Schermi grandi: 3 colonne, coerente con la griglia della home */
+@media screen and (min-width: 1280px) {
+  .results-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* La hero dentro .search-page riempie la colonna (la larghezza la dà .search-page) */
+.search-page .section-hero {
+  width: 100%;
+  margin: 0;
+}
+
+/* ── Empty state: scia di orme di gatto (compaiono in sequenza) ────── */
+.search-trail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 3rem;
+  min-height: 180px;
+}
+
+.paw-trail {
+  width: clamp(280px, 50vw, 460px);
+  height: auto;
+  overflow: visible;
+}
+
+.paw {
+  opacity: 0;
+  fill: var(--color-contrast);
+  filter: drop-shadow(0 0 4px var(--color-contrast));
+  /* ogni orma parte 0.45s dopo la precedente (--i = indice) */
+  animation: paw-step 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * .45s);
+}
+
+/* le orme dispari in magenta per un tocco synthwave */
+.paw:nth-child(even) {
+  fill: var(--color-brand);
+  filter: drop-shadow(0 0 4px var(--color-brand));
+}
+
+@keyframes paw-step {
+  0%        { opacity: 0; }
+  12%       { opacity: 1; }
+  70%       { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paw { opacity: .8; animation: none; }
+}

@@ -1,0 +1,44 @@
+{{- /* Paginazione numerata: 1 … (corrente-1) corrente (corrente+1) … ultima, con frecce opzionali.
+       Param: il paginator (.Paginator o il risultato di .Paginate). */ -}}
+{{- $p := . -}}
+{{- if gt $p.TotalPages 1 -}}
+{{- $current := $p.PageNumber -}}
+{{- $last := $p.TotalPages -}}
+{{- $arrows := site.Params.home.showPaginatorArrows -}}
+<div class="pagination-container">
+  <nav class="pagination" aria-label="Pagination">
+    {{- if $arrows }}
+      {{- with $p.Prev }}
+      <a href="{{ .URL }}" class="page-item mobile-nav" aria-label="Previous page"><span>&lt;</span></a>
+      {{- else }}
+      <span class="page-item mobile-nav disabled">&lt;</span>
+      {{- end }}
+    {{- end }}
+
+    {{- range $p.Pagers }}
+      {{- $n := .PageNumber -}}
+      {{- $near := and (ge $n (sub $current 1)) (le $n (add $current 1)) -}}
+      {{- if eq $n $current }}
+      <span class="page-item active">{{ $n }}</span>
+      {{- else if or (eq $n 1) (eq $n $last) $near }}
+      <a href="{{ .URL }}" class="page-item">{{ $n }}</a>
+      {{- end }}
+      {{- /* puntini dopo la prima pagina e prima dell'ultima quando c'è un salto */ -}}
+      {{- if and (eq $n 1) (gt $current 3) }}
+      <span class="page-item dots">...</span>
+      {{- end }}
+      {{- if and (eq $n (sub $last 1)) (lt $current (sub $last 2)) }}
+      <span class="page-item dots">...</span>
+      {{- end }}
+    {{- end }}
+
+    {{- if $arrows }}
+      {{- with $p.Next }}
+      <a href="{{ .URL }}" class="page-item mobile-nav" aria-label="Next page"><span>&gt;</span></a>
+      {{- else }}
+      <span class="page-item mobile-nav disabled">&gt;</span>
+      {{- end }}
+    {{- end }}
+  </nav>
+</div>
+{{- end -}}

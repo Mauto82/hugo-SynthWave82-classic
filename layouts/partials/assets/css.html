@@ -1,0 +1,13 @@
+{{ $config := resources.Get "css/config.css" }}
+{{ $common := resources.Match "css/plugin/*.css" | append (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
+{{ $stylesheet := slice $config $common | resources.Concat "assets/css/stylesheet.css" | minify }}
+
+{{ if eq hugo.Environment "development" }}
+<link rel="stylesheet" href="{{ $stylesheet.RelPermalink }}">
+{{ else }}
+{{ $stylesheet := $stylesheet | fingerprint }}
+{{/* CSS bloccante: la pagina dipinge già completamente stilizzata → CLS ~0 su TUTTE
+     le pagine (niente swap critical→full che faceva "saltare" post/archivio/ecc.).
+     Il foglio è ~7KB gzip, same-origin, cachato tra le pagine: impatto LCP minimo. */}}
+<link rel="stylesheet" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}">
+{{ end }}

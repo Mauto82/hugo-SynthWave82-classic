@@ -1,0 +1,10 @@
+{{- /* Briciole di pane: home › sezione › pagina. Attive con params.showBreadcrumbs (o per pagina). */ -}}
+{{- if .Param "showBreadcrumbs" }}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  {{- range .Ancestors.Reverse }}
+    <a href="{{ .RelPermalink }}">{{ if .IsHome }}{{ i18n "home" }}{{ else }}{{ .LinkTitle }}{{ end }}</a>
+    <span class="breadcrumbs-sep" aria-hidden="true">›</span>
+  {{- end }}
+  <span aria-current="page">{{ .LinkTitle }}</span>
+</nav>
+{{- end }}

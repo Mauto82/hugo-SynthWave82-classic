@@ -1,0 +1,38 @@
+{{- /* Campo di ricerca con pannello dei suggerimenti.
+       Param: ctx (pagina), id, placeholder, showSuggestions (default true),
+       sections (default posts, tags, categories, authors; disponibili anche "tutorials"),
+       global (default true: gestito da search.js e porta alla pagina di ricerca; false per una ricerca locale come le guide),
+       class (classi extra del contenitore). */ -}}
+{{- $id := .id | default "search-box" -}}
+{{- $placeholder := .placeholder | default (i18n "searchPlaceholder") -}}
+{{- $showSuggestions := cond (isset . "showSuggestions") .showSuggestions true -}}
+{{- $global := cond (isset . "global") .global true -}}
+{{- $sections := .sections | default (slice "posts" "tags" "categories" "authors") -}}
+{{- $titles := dict "posts" (i18n "searchPosts") "tags" "Tags" "categories" (i18n "categories") "authors" (i18n "authors") "tutorials" (i18n "guidesTitle") -}}
+{{- $lists := dict "posts" "post" "tags" "tag" "categories" "category" "authors" "author" "tutorials" "tutorial" -}}
+<div class="search-container{{ with .class }} {{ . }}{{ end }}">
+    <div class="search-wrapper">
+        <input
+            type="search"
+            id="{{ $id }}"
+            class="search-input{{ if $global }} global-search-input{{ end }}"
+            placeholder="{{ $placeholder }}"
+            aria-label="{{ $placeholder }}"
+            autocomplete="off"
+        />
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        {{- if $showSuggestions }}
+        <div class="search-suggestions" style="display: none;">
+            {{- range $sections }}
+            <div class="suggestion-section">
+                <h4>{{ index $titles . }}</h4>
+                <ul class="{{ index $lists . }}-suggestions"></ul>
+            </div>
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+</div>

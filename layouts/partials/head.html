@@ -1,0 +1,63 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Preload font critico (latin, usato per la maggior parte del testo) -->
+<link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+{{/* Canonical self-referential su TUTTE le pagine (risolve i duplicati con/senza slash) */}}
+<link rel="canonical" href="{{ .Permalink }}" />
+{{- with .OutputFormats.Get "markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown" />
+{{- end }}
+
+{{/* robots: noindex per pagine utility/thin che non devono stare nell'indice */}}
+{{- $noindex := false -}}
+{{- if or (eq .Layout "search") (in .RelPermalink "/search/") -}}{{- $noindex = true -}}{{- end -}}
+{{- if and (eq .Kind "term") (lt (len .Pages) 3) -}}{{- $noindex = true -}}{{- end -}}
+{{- if and (eq .Data.Plural "tags") (in (slice "taxonomy" "term") .Kind) -}}{{- $noindex = true -}}{{- end -}}
+{{- if .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
+<meta name="robots" content="{{ cond $noindex "noindex, follow" "index, follow" }}" />
+
+{{/* preload immagini above-the-fold */}}
+{{ if .IsHome }}
+{{- $hero := site.Params.hero.home | default "images/hero-synthwave.webp" -}}
+{{ if partial "func/cdn-enabled.html" . }}
+<link rel="preload" as="image"
+      href="/cdn-hero-lg/{{ $hero }}"
+      imagesrcset="/cdn-hero-sm/{{ $hero }} 700w, /cdn-hero-md/{{ $hero }} 900w, /cdn-hero-lg/{{ $hero }} 1200w"
+      imagesizes="min(868px, 95vw)"
+      fetchpriority="high" />
+{{ else }}
+<link rel="preload" as="image" href="/{{ $hero }}" fetchpriority="high" />
+{{ end }}
+{{ else if and (.IsPage) (.Params.cover) }}
+{{ partial "image-preload.html" .Params.cover.image }}
+{{ end }}
+{{ if eq .Layout "search" }}
+<link rel="stylesheet" href="/css/search.css" />
+{{ end }}
+{{- if .IsTranslated }}
+{{ range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
+{{ end -}}
+{{- range first 1 (where .AllTranslations "Language.Lang" hugo.Sites.Default.Language.Lang) }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+{{- end }}
+{{- end }}
+{{ if .Param "math" }}
+{{ partialCached "math.html" . }}
+{{ end }}
+<title>
+    {{ if .IsHome }}{{- site.Title -}}{{ else }}{{- printf "%s | %s" .Title site.Params.shortTitle -}}{{ end }}
+</title>
+{{ partial "analytics/umami.html" . }}
+{{ if .Description }}
+<meta name="description" content="{{ .Description }}" />
+{{ else if .IsPage }}
+<meta name="description" content="{{ .Summary | plainify }}" />
+{{ else }}
+<meta name="description" content="{{ i18n "termDescription" (dict "Title" .Title "Site" (site.Params.shortTitle | default site.Title)) }}" />
+{{ end }}

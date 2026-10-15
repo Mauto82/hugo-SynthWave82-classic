@@ -1,0 +1,11 @@
+{{- /* Bundle JS comune: js/main.js e i moduli che importa. */ -}}
+{{- $opts := dict "minify" hugo.IsProduction -}}
+{{- with resources.Get "js/main.js" | js.Build $opts -}}
+  {{- if hugo.IsDevelopment }}
+<script src="{{ .RelPermalink }}" defer></script>
+  {{- else }}
+    {{- with . | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+    {{- end }}
+  {{- end }}
+{{- end }}

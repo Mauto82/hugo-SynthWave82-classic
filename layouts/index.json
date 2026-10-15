@@ -1,0 +1,19 @@
+{{- $catTax := partial "func/category-taxonomy.html" . -}}
+{{- $pages := where .Site.RegularPages "Section" "in" (site.Params.searchSections | default (slice "posts")) -}}
+{{- $index := slice -}}
+{{- range $pages -}}
+  {{- $image := "" -}}
+  {{- with .Params.cover -}}{{- $image = .image -}}{{- end -}}
+  {{- $entry := dict
+    "title"     .Title
+    "permalink" .Permalink
+    "summary"   (.Summary | plainify)
+    "date"      (.Date.Format "2006-01-02")
+    "tags"      (.Params.tags | default slice)
+    "categories" (index .Params $catTax | default slice)
+    "author"    (.Params.author | default "")
+    "image"     $image
+  -}}
+  {{- $index = $index | append $entry -}}
+{{- end -}}
+{{- $index | jsonify -}}

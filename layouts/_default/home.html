@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="home-layout">
+  {{ partial "hero-banner.html" (dict
+      "base"  (site.Params.hero.home | default "images/hero-synthwave.webp")
+      "title" .Title
+      "desc"  (.Content | plainify)
+      "alt"   site.Params.shortTitle
+      "class" ""
+  ) }}
+
+  <div class="home-search-container">
+    {{ partial "search-box.html" (dict
+        "ctx"             .
+        "id"              "home-search"
+        "placeholder"     (i18n "searchPlaceholder")
+        "showSuggestions" true
+    ) }}
+  </div>
+</div>
+
+{{ $paginator := .Paginate (where site.RegularPages "Section" "posts") }}
+<div class="posts-grid">
+  {{- range $i, $page := $paginator.Pages }}
+    {{- if site.Params.home.postSummary }}
+      {{- partial "post_summary.html" (dict "page" $page "first" (eq $i 0)) }}
+    {{- else }}
+      {{- partial "post.html" $page }}
+    {{- end }}
+  {{- end }}
+</div>
+{{ partial "pagination.html" $paginator }}
+{{ end }}

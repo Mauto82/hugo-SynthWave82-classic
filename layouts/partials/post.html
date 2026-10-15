@@ -1,0 +1,39 @@
+<article class="post">
+    {{ if site.Params.Post.ShowCategories }}
+    {{ partial "post_categories.html" . }}
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.cover }}
+    <div class="post-cover">
+        {{ partial "image-responsive.html" (dict "image" .Params.cover.image "alt" .Params.cover.alt "width" 800 "height" 400 "priority" true "sizes" "(max-width: 768px) calc(100vw - 2rem), 800px") }}
+        {{ if .Params.cover.caption }}
+        <figcaption class="cover-caption">{{ .Params.cover.caption }}</figcaption>
+        {{ end }}
+    </div>
+    {{ end }}
+    {{ if site.Params.Post.ShowMeta }}
+    {{ partial "post_meta.html" . }}
+    {{ end }}
+    {{ if site.Params.Post.ShowTags }}
+    {{ partial "post_tags.html" . }}
+    {{ end }}
+    <div class="article-content">
+        {{ if site.Params.Post.highlightTags }}
+        {{ partial "highlight-tags.html" (dict "content" .Content "site" .Site) }}
+        {{ else }}
+        {{ .Content | safeHTML }}
+        {{ end }}
+    </div>
+    {{ partial "related_posts.html" . }}
+    {{- /* Commenti: attivi su tutto il sito (enableComments) salvo disableComments, oppure solo sui post con enableComments */}}
+    {{ if cond site.Params.enableComments (not .Params.disableComments) .Params.enableComments }}
+    <div class="post-comments">
+        {{ partial "comments.html" . }}
+    </div>
+    {{ end }}
+
+    {{ if site.Params.Post.ShowNav }}
+    {{ partial "post_nav.html" . }}
+    {{ end }}
+</article>
+{{ partial "sticky_share.html" . }}

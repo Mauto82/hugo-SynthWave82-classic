@@ -1,0 +1,11 @@
+{{- /* Umami Analytics (senza cookie), solo in produzione.
+       params.analytics.umami: src, websiteId, performance (Core Web Vitals). */ -}}
+{{- with site.Params.analytics.umami -}}
+{{- if and .src .websiteId (eq hugo.Environment "production") -}}
+<script defer src="{{ .src }}"
+  data-website-id="{{ .websiteId }}"
+  {{- if .performance }}
+  data-performance="true"
+  {{- end }}></script>
+{{ end -}}
+{{- end -}}
